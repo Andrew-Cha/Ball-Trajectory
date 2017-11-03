@@ -23,10 +23,6 @@ class DragLine: SKShapeNode {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	func started(at initialPosition: CGPoint) {
-		self.initialPosition = initialPosition
-	}
-	
 	func positionChanged(to currentPosition: CGPoint) {
 		dashedLine.removeFromParent()
 		let currentDragPath = UIBezierPath()

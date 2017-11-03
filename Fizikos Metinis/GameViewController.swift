@@ -45,10 +45,12 @@ class GameViewController: UIViewController, AngleAndForceLabelProtocol {
 	}
 	
 	func createAngleForceLabelsCreate() {
-		angleLabel = UILabel(frame: CGRect(x: 0, y: 20, width: 20, height: 10))
-		forceLabel = UILabel(frame: CGRect(x: 0, y: 40, width: 20, height: 10))
+		angleLabel = UILabel(frame: CGRect(x: 0, y: 60, width: 20, height: 10))
+		forceLabel = UILabel(frame: CGRect(x: 0, y: 84, width: 20, height: 10))
 		view.addSubview(angleLabel)
 		view.addSubview(forceLabel)
+		print(angleLabel)
+		print(forceLabel)
 	}
 	
 	func angleChanged(to angle: CGFloat) {
@@ -62,6 +64,8 @@ class GameViewController: UIViewController, AngleAndForceLabelProtocol {
 	func angleForceLabelsRemove() {
 		angleLabel.removeFromSuperview()
 		forceLabel.removeFromSuperview()
+		print(angleLabel)
+		print(forceLabel)
 	}
 	
 	override var shouldAutorotate: Bool {

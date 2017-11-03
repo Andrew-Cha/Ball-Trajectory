@@ -40,11 +40,7 @@ class Ball: SKSpriteNode, BallPosResetButtonDelegate {
 	var totalDragDistance = CGVector(dx: 0, dy: 0)
 	var initialPosition = CGPoint(x: 0, y: 0)
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-		for touch in touches {
-			initialPosition = touch.location(in: gameScene)
-			gameScene.draggingLine.started(at: initialPosition)
 			angleForceDelegate?.createAngleForceLabelsCreate()
-		}
 	}
 	
 	var currentLocation = CGPoint(x: 0, y: 0)
@@ -65,7 +61,7 @@ class Ball: SKSpriteNode, BallPosResetButtonDelegate {
 		for touch in touches {
 			endingPosition = touch.location(in: gameScene)
 			physicsBody?.isDynamic = true
-			physicsBody?.applyForce(totalDragDistance, at: initialPosition)
+			physicsBody?.applyImpulse(totalDragDistance)
 			
 			gameScene.draggingLine.stopped()
 			angleForceDelegate?.angleForceLabelsRemove()
