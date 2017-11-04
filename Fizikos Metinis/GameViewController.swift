@@ -52,6 +52,7 @@ class GameViewController: UIViewController, AngleAndForceLabel {
 	}
 	
 	func angleForceLabelsRemove() {
+		let numberFormatter = NumberFormatter()
 		angleLabel.isHidden = false
 		angleLabel.isHidden = false
 		print(angleLabel)
