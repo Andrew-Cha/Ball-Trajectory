@@ -62,7 +62,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 				let height = CGPoint(x: 0, y: currentLocation.y)
 				let cosValue = hypot(height.x, height.y) / hypot(currentLocation.x, currentLocation.y)
 				let angle = (acos(cosValue) * 180 / CGFloat.pi)
-				angleForceDelegate?.angleForceChanged(angle: angle, force: 12412)
+				angleForceDelegate?.angleForceAndPositionChanged(angle: angle, force: 420, position: touch.location(in: gameScene))
 			}
 		}
 	}
@@ -92,6 +92,6 @@ protocol BallPosResetButton {
 
 protocol AngleAndForceLabel {
 	func createAngleForceLabels()
-	func angleForceChanged(angle: CGFloat, force: Double)
+	func angleForceAndPositionChanged(angle: CGFloat, force: Double, position: CGPoint)
 	func angleForceLabelsRemove()
 }

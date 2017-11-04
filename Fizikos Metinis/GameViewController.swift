@@ -11,8 +11,8 @@ import SpriteKit
 
 class GameViewController: UIViewController, AngleAndForceLabel {
 	var ballButtonDelegate: BallPosResetButton?
-	var angleLabel: UILabel!
-	var forceLabel: UILabel!
+	@IBOutlet weak var forceLabel: UILabel!
+	@IBOutlet weak var angleLabel: UILabel!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -37,22 +37,23 @@ class GameViewController: UIViewController, AngleAndForceLabel {
 	}
 	
 	func createAngleForceLabels() {
-		angleLabel = UILabel(frame: CGRect(x: 0, y: 60, width: 20, height: 10))
-		forceLabel = UILabel(frame: CGRect(x: 0, y: 84, width: 20, height: 10))
-		view.addSubview(angleLabel)
-		view.addSubview(forceLabel)
+		angleLabel.isHidden = false
+		forceLabel.isHidden = false
 		print(angleLabel)
 		print(forceLabel)
 	}
 	
-	func angleForceChanged(angle: CGFloat, force: Double) {
+	func angleForceAndPositionChanged(angle: CGFloat, force: Double, position: CGPoint) {
+		//if the labels are outside of the view make them be below the finger not above
+		angleLabel.frame.origin = CGPoint(x: position.x + 20, y: position.y)
+		angleLabel.frame.origin = CGPoint(x: position.x + 40, y: position.y)
 		angleLabel.text = ("\(angle) Degrees")
 		forceLabel.text = ("\(force) Newtons")
 	}
 	
 	func angleForceLabelsRemove() {
-		angleLabel.removeFromSuperview()
-		forceLabel.removeFromSuperview()
+		angleLabel.isHidden = false
+		angleLabel.isHidden = false
 		print(angleLabel)
 		print(forceLabel)
 	}
