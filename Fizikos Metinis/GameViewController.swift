@@ -8,7 +8,6 @@
 
 import UIKit
 import SpriteKit
-import GameplayKit
 
 class GameViewController: UIViewController, AngleAndForceLabel {
 	var ballButtonDelegate: BallPosResetButton?
@@ -17,26 +16,19 @@ class GameViewController: UIViewController, AngleAndForceLabel {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		if let scene = GKScene(fileNamed: "GameScene") {
-			
-			// Get the SKScene from the loaded GKScene
-			if let sceneNode = scene.rootNode as! GameScene? {
-				
-				// Set the scale mode to scale to fit the window
-				sceneNode.scaleMode = .aspectFill
-				
-				// Present the scene
-				if let view = self.view as! SKView? {
-					view.presentScene(sceneNode)
-					
-					ballButtonDelegate = sceneNode.player
-					sceneNode.player.angleForceDelegate = self
-					
-					view.showsFPS = true
-					view.showsNodeCount = true
-				}
+		if let view = self.view as? SKView {
+			guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
+				fatalError("Could not load scene!")
 			}
+			// Set the scale mode to scale to fit the window
+			scene.scaleMode = .aspectFill
+			view.presentScene(scene)
+			
+			ballButtonDelegate = scene.player
+			scene.player.angleForceDelegate = self
+			
+			view.showsFPS = true
+			view.showsNodeCount = true
 		}
 	}
 	
@@ -86,3 +78,4 @@ class GameViewController: UIViewController, AngleAndForceLabel {
 		return true
 	}
 }
+

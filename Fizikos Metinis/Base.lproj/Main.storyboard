@@ -30,6 +30,7 @@
                         <constraints>
                             <constraint firstItem="y6j-vd-JHS" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="20" id="1kF-IQ-8iR"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="y6j-vd-JHS" secondAttribute="trailing" constant="20" id="8dw-My-4eD"/>
+                            <constraint firstItem="y6j-vd-JHS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4qk-I5-YsI" secondAttribute="leading" id="vca-1q-4up"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
