@@ -39,14 +39,12 @@ class GameViewController: UIViewController, AngleAndForceLabel {
 	func createAngleForceLabels() {
 		angleLabel.isHidden = false
 		forceLabel.isHidden = false
-		print(angleLabel)
-		print(forceLabel)
 	}
 	
 	func angleForceAndPositionChanged(angle: CGFloat, force: Double, position: CGPoint) {
 		//if the labels are outside of the view make them be below the finger not above
-		angleLabel.frame.origin = CGPoint(x: position.x + 20, y: position.y)
-		angleLabel.frame.origin = CGPoint(x: position.x + 40, y: position.y)
+		angleLabel.frame.origin = CGPoint(x: position.x, y: position.y + 20)
+		forceLabel.frame.origin = CGPoint(x: position.x, y: position.y + 40)
 		angleLabel.text = ("\(angle) Degrees")
 		forceLabel.text = ("\(force) Newtons")
 	}
@@ -54,9 +52,7 @@ class GameViewController: UIViewController, AngleAndForceLabel {
 	func angleForceLabelsRemove() {
 		let numberFormatter = NumberFormatter()
 		angleLabel.isHidden = true
-		angleLabel.isHidden = true
-		print(angleLabel)
-		print(forceLabel)
+		forceLabel.isHidden = true
 	}
 	
 	override var shouldAutorotate: Bool {
