@@ -12,7 +12,7 @@ import SpriteKit
 class DragLine: SKShapeNode {
 	var dashedLine = SKShapeNode()
 	var gameScene: GameScene!
-	var initialPosition = CGPoint(x: 0, y: 0)
+	var initialPosition: CGPoint?
 	
 	init(in gameScene: GameScene) {
 		super.init()
@@ -23,10 +23,14 @@ class DragLine: SKShapeNode {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	func dragStarted(at position: CGPoint) {
+		initialPosition = position
+	}
+	
 	func positionChanged(to currentPosition: CGPoint) {
 		dashedLine.removeFromParent()
 		let currentDragPath = UIBezierPath()
-		currentDragPath.move(to: initialPosition)
+		currentDragPath.move(to: initialPosition!)
 		currentDragPath.addLine(to: currentPosition)
 		let dashed = currentDragPath.cgPath.copy(dashingWithPhase: 10, lengths: [5])
 		dashedLine = SKShapeNode(path: dashed)
@@ -36,5 +40,6 @@ class DragLine: SKShapeNode {
 	
 	func stopped() {
 		dashedLine.removeFromParent()
+		initialPosition = nil
 	}
 }

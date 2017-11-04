@@ -10,10 +10,10 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController, AngleAndForceLabelProtocol {
-	var ballButtonDelegate: BallPosResetButtonDelegate?
-	var angleLabel = UILabel()
-	var forceLabel = UILabel()
+class GameViewController: UIViewController, AngleAndForceLabel {
+	var ballButtonDelegate: BallPosResetButton?
+	var angleLabel: UILabel!
+	var forceLabel: UILabel!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -29,7 +29,7 @@ class GameViewController: UIViewController, AngleAndForceLabelProtocol {
 				// Present the scene
 				if let view = self.view as! SKView? {
 					view.presentScene(sceneNode)
-
+					
 					ballButtonDelegate = sceneNode.player
 					sceneNode.player.angleForceDelegate = self
 					
@@ -44,7 +44,7 @@ class GameViewController: UIViewController, AngleAndForceLabelProtocol {
 		ballButtonDelegate?.resetPosition()
 	}
 	
-	func createAngleForceLabelsCreate() {
+	func createAngleForceLabels() {
 		angleLabel = UILabel(frame: CGRect(x: 0, y: 60, width: 20, height: 10))
 		forceLabel = UILabel(frame: CGRect(x: 0, y: 84, width: 20, height: 10))
 		view.addSubview(angleLabel)
@@ -53,11 +53,8 @@ class GameViewController: UIViewController, AngleAndForceLabelProtocol {
 		print(forceLabel)
 	}
 	
-	func angleChanged(to angle: CGFloat) {
+	func angleForceChanged(angle: CGFloat, force: Double) {
 		angleLabel.text = ("\(angle) Degrees")
-	}
-	
-	func forceChanged(to force: Double) {
 		forceLabel.text = ("\(force) Newtons")
 	}
 	

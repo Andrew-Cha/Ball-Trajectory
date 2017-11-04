@@ -9,11 +9,11 @@
 import Foundation
 import SpriteKit
 
-class Ball: SKSpriteNode, BallPosResetButtonDelegate {
+class Ball: SKSpriteNode, BallPosResetButton {
 	static let texture = SKTexture(imageNamed: "ball.png")
 	let bodyRadius: CGFloat
 	weak var gameScene: GameScene!
-	var angleForceDelegate: AngleAndForceLabelProtocol?
+	var angleForceDelegate: AngleAndForceLabel?
 	
 	init(in gameScene: GameScene) {
 		self.gameScene = gameScene
@@ -37,34 +37,50 @@ class Ball: SKSpriteNode, BallPosResetButtonDelegate {
 		position = CGPoint(x: 0, y: 0)
 	}
 	
-	var totalDragDistance = CGVector(dx: 0, dy: 0)
-	var initialPosition = CGPoint(x: 0, y: 0)
+	var totalDragDistance: CGVector?
+	var initialPosition: CGPoint?
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-			angleForceDelegate?.createAngleForceLabelsCreate()
-	}
-	
-	var currentLocation = CGPoint(x: 0, y: 0)
-	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
-			currentLocation = touch.location(in: gameScene)
-			gameScene.draggingLine.positionChanged(to: currentLocation)
-			totalDragDistance = CGVector(dx: (initialPosition.x - endingPosition.x), dy: (initialPosition.y - endingPosition.y))
-			let height = CGPoint(x: 0, y: currentLocation.y)
-			let cosValue = hypot(height.x, height.y) / hypot(currentLocation.x, currentLocation.y)
-			let angle = (acos(cosValue) * 180 / CGFloat.pi)
-			angleForceDelegate?.angleChanged(to: angle)
+			initialPosition = touch.location(in: gameScene)
+			angleForceDelegate?.createAngleForceLabels()
+			if let initialPosition = initialPosition {
+				gameScene.draggingLine.dragStarted(at: initialPosition)
+				print("Touch Start Works")
+			}
 		}
 	}
 	
-	var endingPosition = CGPoint(x: 0, y: 0)
+	var currentLocation: CGPoint?
+	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+		for touch in touches {
+			if let initialPosition = initialPosition, let currentLocation = currentLocation, let endingPosition = endingPosition {
+				print("Touch moved works")
+				self.currentLocation = touch.location(in: gameScene)
+				gameScene.draggingLine.positionChanged(to: currentLocation)
+				
+				totalDragDistance = CGVector(dx: (initialPosition.x - endingPosition.x), dy: (initialPosition.y - endingPosition.y))
+				let height = CGPoint(x: 0, y: currentLocation.y)
+				let cosValue = hypot(height.x, height.y) / hypot(currentLocation.x, currentLocation.y)
+				let angle = (acos(cosValue) * 180 / CGFloat.pi)
+				angleForceDelegate?.angleForceChanged(angle: angle, force: 12412)
+			}
+		}
+	}
+	
+	var endingPosition: CGPoint?
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
+			print("Touch ended works")
 			endingPosition = touch.location(in: gameScene)
 			physicsBody?.isDynamic = true
-			physicsBody?.applyImpulse(totalDragDistance)
-			
+			if let initialPosition  = initialPosition, let totalDragDistance = totalDragDistance {
+				physicsBody?.applyForce(totalDragDistance, at: initialPosition)
+			}
 			gameScene.draggingLine.stopped()
 			angleForceDelegate?.angleForceLabelsRemove()
+			initialPosition = nil
+			currentLocation = nil
+			endingPosition = nil
 		}
 	}
 	
@@ -73,13 +89,12 @@ class Ball: SKSpriteNode, BallPosResetButtonDelegate {
 	}
 }
 
-protocol BallPosResetButtonDelegate {
+protocol BallPosResetButton {
 	func resetPosition()
 }
 
-protocol AngleAndForceLabelProtocol {
-	func createAngleForceLabelsCreate()
-	func angleChanged(to angle: CGFloat)
-	func forceChanged(to force: Double)
+protocol AngleAndForceLabel {
+	func createAngleForceLabels()
+	func angleForceChanged(angle: CGFloat, force: Double)
 	func angleForceLabelsRemove()
 }
