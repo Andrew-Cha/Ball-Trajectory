@@ -13,6 +13,8 @@ class GameViewController: UIViewController, AngleAndForceLabel {
 	var ballButtonDelegate: BallPosResetButton?
 	@IBOutlet weak var forceLabel: UILabel!
 	@IBOutlet weak var angleLabel: UILabel!
+	@IBOutlet var gameView: SKView!
+	var gameScene: SKScene!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -23,9 +25,9 @@ class GameViewController: UIViewController, AngleAndForceLabel {
 			// Set the scale mode to scale to fit the window
 			scene.scaleMode = .aspectFill
 			view.presentScene(scene)
-			
 			ballButtonDelegate = scene.player
 			scene.player.angleForceDelegate = self
+			gameScene = view.scene
 			
 			view.showsFPS = true
 			view.showsNodeCount = true
@@ -41,16 +43,20 @@ class GameViewController: UIViewController, AngleAndForceLabel {
 		forceLabel.isHidden = false
 	}
 	
-	func angleForceAndPositionChanged(angle: CGFloat, force: Double, position: CGPoint) {
+	func angleForceAndPositionChanged(angle: CGFloat, force: CGFloat, position: CGPoint) {
 		//if the labels are outside of the view make them be below the finger not above
-		angleLabel.frame.origin = CGPoint(x: position.x, y: position.y + 20)
-		forceLabel.frame.origin = CGPoint(x: position.x, y: position.y + 40)
-		angleLabel.text = ("\(angle) Degrees")
-		forceLabel.text = ("\(force) Newtons")
+		let convertedPosition = gameView.convert(position, from: gameScene)
+		angleLabel.center = CGPoint(x: convertedPosition.x, y: convertedPosition.y - 70)
+		forceLabel.center = CGPoint(x: convertedPosition.x, y: convertedPosition.y - 90)
+		let numberFormatter = NumberFormatter()
+		numberFormatter.numberStyle = .decimal
+		numberFormatter.maximumFractionDigits = 2
+		let newAngle = angle >= 0 ? angle : 360 + angle
+		angleLabel.text = ("\(numberFormatter.string(from: newAngle as NSNumber)!)°")
+		forceLabel.text = ("\(numberFormatter.string(from: force as NSNumber)!) N")
 	}
 	
 	func angleForceLabelsRemove() {
-		let numberFormatter = NumberFormatter()
 		angleLabel.isHidden = true
 		forceLabel.isHidden = true
 	}

@@ -37,7 +37,6 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		position = CGPoint(x: 0, y: 0)
 	}
 	
-	var totalDragDistance: CGVector?
 	var initialPosition: CGPoint?
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
@@ -45,39 +44,36 @@ class Ball: SKSpriteNode, BallPosResetButton {
 			angleForceDelegate?.createAngleForceLabels()
 			if let initialPosition = initialPosition {
 				gameScene.draggingLine.dragStarted(at: initialPosition)
-				print("Touch Start Works")
+				let someAction = SKAction.falloff(to: 10, duration: 10)
+				run(someAction)
 			}
 		}
 	}
 	
-	var currentLocation: CGPoint?
 	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
-			currentLocation = touch.location(in: gameScene)
-			if let initialPosition = initialPosition, let currentLocation = currentLocation {
-				print("Touch moved works")
+			let currentLocation = touch.location(in: gameScene)
+			if let initialPosition = initialPosition {
 				gameScene.draggingLine.positionChanged(to: currentLocation)
 				
-				totalDragDistance = CGVector(dx: (initialPosition.x - currentLocation.x), dy: (initialPosition.y - currentLocation.y))
-				let height = CGPoint(x: 0, y: currentLocation.y)
-				let cosValue = hypot(height.x, height.y) / hypot(currentLocation.x, currentLocation.y)
-				let angle = (acos(cosValue) * 180 / CGFloat.pi)
-				angleForceDelegate?.angleForceAndPositionChanged(angle: angle, force: 420, position: currentLocation)
+				let totalDragDistance = initialPosition - currentLocation
+				let angle = currentLocation.angle * 180 / .pi
+				angleForceDelegate?.angleForceAndPositionChanged(angle: angle, force: totalDragDistance.length, position: currentLocation)
 			}
 		}
 	}
 	
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-		for _ in touches {
-			print("Touch ended works")
+		for touch in touches {
+			let currentLocation = touch.location(in: gameScene)
 			physicsBody?.isDynamic = true
-			if let initialPosition  = initialPosition, let totalDragDistance = totalDragDistance {
-				physicsBody?.applyForce(totalDragDistance, at: initialPosition)
+			if let initialPosition = initialPosition {
+				let totalDragDistance = initialPosition - currentLocation
+				physicsBody?.applyForce(totalDragDistance.asVector, at: initialPosition)
 			}
 			gameScene.draggingLine.stopped()
 			angleForceDelegate?.angleForceLabelsRemove()
 			initialPosition = nil
-			currentLocation = nil
 		}
 	}
 	
@@ -92,6 +88,6 @@ protocol BallPosResetButton {
 
 protocol AngleAndForceLabel {
 	func createAngleForceLabels()
-	func angleForceAndPositionChanged(angle: CGFloat, force: Double, position: CGPoint)
+	func angleForceAndPositionChanged(angle: CGFloat, force: CGFloat, position: CGPoint)
 	func angleForceLabelsRemove()
 }

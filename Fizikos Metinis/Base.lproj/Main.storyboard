@@ -53,6 +53,7 @@
                     <connections>
                         <outlet property="angleLabel" destination="iFl-3g-lbG" id="LwU-1z-DZd"/>
                         <outlet property="forceLabel" destination="1Sp-48-zly" id="vTA-80-rPq"/>
+                        <outlet property="gameView" destination="3se-qz-xqx" id="Rwx-cI-BZ4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

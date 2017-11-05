@@ -21,6 +21,7 @@
 		DF6E08D11FA9353500D93A87 /* BorderRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E08D01FA9353500D93A87 /* BorderRectangle.swift */; };
 		DF6E08D31FA9F59C00D93A87 /* MyTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = DF6E08D21FA9F59C00D93A87 /* MyTileSet.sks */; };
 		DF71303F1FABEF3F00ECDB0D /* DragLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF71303E1FABEF3F00ECDB0D /* DragLine.swift */; };
+		DFCBED811FAF531F00D4E8FB /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCBED801FAF531E00D4E8FB /* Geometry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		DF6E08D01FA9353500D93A87 /* BorderRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderRectangle.swift; sourceTree = "<group>"; };
 		DF6E08D21FA9F59C00D93A87 /* MyTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyTileSet.sks; sourceTree = "<group>"; };
 		DF71303E1FABEF3F00ECDB0D /* DragLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragLine.swift; sourceTree = "<group>"; };
+		DFCBED801FAF531E00D4E8FB /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				DF6E08A71FA9307E00D93A87 /* Assets.xcassets */,
 				DF6E08A91FA9307E00D93A87 /* LaunchScreen.storyboard */,
 				DF6E08AC1FA9307E00D93A87 /* Info.plist */,
+				DFCBED801FAF531E00D4E8FB /* Geometry.swift */,
 			);
 			path = "Fizikos Metinis";
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF6E08CF1FA930BA00D93A87 /* Ball.swift in Sources */,
+				DFCBED811FAF531F00D4E8FB /* Geometry.swift in Sources */,
 				DF71303F1FABEF3F00ECDB0D /* DragLine.swift in Sources */,
 				DF6E08A11FA9307E00D93A87 /* GameScene.swift in Sources */,
 				DF6E08A31FA9307E00D93A87 /* GameViewController.swift in Sources */,
