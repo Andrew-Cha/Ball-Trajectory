@@ -37,16 +37,14 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		position = CGPoint(x: 0, y: 0)
 	}
 	
-	var initialPosition: CGPoint?
+	var initialLocation: CGPoint?
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
 			gameScene.camFollowingPlayer = false
-			initialPosition = touch.location(in: gameScene)
+			initialLocation = touch.location(in: gameScene)
 			angleForceDelegate?.createAngleForceLabels()
-			if let initialPosition = initialPosition {
-				gameScene.draggingLine.dragStarted(at: initialPosition)
-				let someAction = SKAction.falloff(to: 10, duration: 10)
-				run(someAction)
+			if let initialLocation = initialLocation {
+				gameScene.draggingLine.dragStarted(at: initialLocation)
 			}
 		}
 	}
@@ -55,12 +53,11 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		for touch in touches {
 			let currentLocation = touch.location(in: gameScene)
 			position = currentLocation
-			if let initialPosition = initialPosition {
+			if let initialLocation = initialLocation {
 				gameScene.draggingLine.positionChanged(to: currentLocation)
-				
-				let totalDragDistance = initialPosition - currentLocation
-				let angle = currentLocation.angle * 180 / .pi
-				angleForceDelegate?.angleForceAndPositionChanged(angle: angle, force: totalDragDistance.length, position: currentLocation)
+				let offset = initialLocation - currentLocation
+				let angle = offset.angle * 180 / .pi
+				angleForceDelegate?.angleForceAndPositionChanged(angle: angle, force: offset.length, position: currentLocation)
 			}
 		}
 	}
@@ -70,14 +67,18 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		for touch in touches {
 			let currentLocation = touch.location(in: gameScene)
 			physicsBody?.isDynamic = true
-			if let initialPosition = initialPosition {
-				let totalDragDistance = (initialPosition - currentLocation) * impulseScale
-				physicsBody?.applyForce(totalDragDistance.asVector)
-				gameScene.camFollowingPlayer = true
+			if let initialLocation = initialLocation {
+				let offset = (initialLocation - currentLocation) * impulseScale
+				physicsBody?.applyForce(offset.asVector)
+				if position.x > 0 {
+					gameScene.endingBallPositionIsPositive = true
+				} else {
+					gameScene.endingBallPositionIsPositive = false
+				}
 			}
 			gameScene.draggingLine.stopped()
 			angleForceDelegate?.angleForceLabelsRemove()
-			initialPosition = nil
+			initialLocation = nil
 		}
 	}
 	

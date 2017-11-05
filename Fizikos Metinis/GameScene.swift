@@ -14,6 +14,7 @@ class GameScene: SKScene {
 	var cam: SKCameraNode!
 	var draggingLine: DragLine!
 	var camFollowingPlayer = false
+	var endingBallPositionIsPositive: Bool?
 	
 	override func sceneDidLoad() {
 		player = Ball(in: self)
@@ -29,6 +30,18 @@ class GameScene: SKScene {
 				cam.position = player.position
 			} else {
 				cam.position.x = player.position.x
+			}
+		} else {
+			if let endingBallPositionIsPositive = endingBallPositionIsPositive {
+				if endingBallPositionIsPositive {
+					if player.position.x < 0 {
+						camFollowingPlayer = true
+					}
+				} else {
+					if player.position.x > 0 {
+						camFollowingPlayer = true
+					}
+				}
 			}
 		}
 	}
