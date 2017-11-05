@@ -35,11 +35,13 @@ class Ball: SKSpriteNode, BallPosResetButton {
 	func resetPosition() {
 		physicsBody?.isDynamic = false
 		position = CGPoint(x: 0, y: 0)
+		isUserInteractionEnabled = true
 	}
 	
 	var initialLocation: CGPoint?
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
+			isUserInteractionEnabled = false
 			gameScene.camFollowingPlayer = false
 			initialLocation = touch.location(in: gameScene)
 			angleForceDelegate?.createAngleForceLabels()
