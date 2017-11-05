@@ -58,19 +58,20 @@ class Ball: SKSpriteNode, BallPosResetButton {
 			if let initialPosition = initialPosition {
 				gameScene.draggingLine.positionChanged(to: currentLocation)
 				
-				let totalDragDistance = (initialPosition - currentLocation) * 4
+				let totalDragDistance = initialPosition - currentLocation
 				let angle = currentLocation.angle * 180 / .pi
 				angleForceDelegate?.angleForceAndPositionChanged(angle: angle, force: totalDragDistance.length, position: currentLocation)
 			}
 		}
 	}
 	
+	let impulseScale: CGFloat = 4
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
 			let currentLocation = touch.location(in: gameScene)
 			physicsBody?.isDynamic = true
 			if let initialPosition = initialPosition {
-				let totalDragDistance = (initialPosition - currentLocation) * 4
+				let totalDragDistance = (initialPosition - currentLocation) * impulseScale
 				physicsBody?.applyForce(totalDragDistance.asVector)
 				gameScene.camFollowingPlayer = true
 			}
