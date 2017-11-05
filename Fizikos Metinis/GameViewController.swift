@@ -52,8 +52,8 @@ class GameViewController: UIViewController, AngleAndForceLabel {
 		numberFormatter.numberStyle = .decimal
 		numberFormatter.maximumFractionDigits = 2
 		let newAngle = angle >= 0 ? angle : 360 + angle
-		angleLabel.text = ("\(numberFormatter.string(from: newAngle as NSNumber)!)°")
-		forceLabel.text = ("\(numberFormatter.string(from: force as NSNumber)!) N")
+		angleLabel.text = "\(numberFormatter.string(from: newAngle as NSNumber)!)°"
+		forceLabel.text = "\(numberFormatter.string(from: force as NSNumber)!) N"
 	}
 	
 	func angleForceLabelsRemove() {

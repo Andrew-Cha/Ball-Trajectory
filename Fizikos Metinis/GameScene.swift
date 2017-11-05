@@ -13,6 +13,7 @@ class GameScene: SKScene {
 	var bottomBorder: BottomBorder!
 	var cam: SKCameraNode!
 	var draggingLine: DragLine!
+	var camFollowingPlayer = false
 	
 	override func sceneDidLoad() {
 		player = Ball(in: self)
@@ -23,10 +24,12 @@ class GameScene: SKScene {
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
-		if player.position.y >= -10 {
-			cam.position = player.position
-		} else {
-			cam.position.x = player.position.x
+		if camFollowingPlayer {
+			if player.position.y >= -10 {
+				cam.position = player.position
+			} else {
+				cam.position.x = player.position.x
+			}
 		}
 	}
 }
