@@ -62,7 +62,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		}
 	}
 	
-	let impulseScale: CGFloat = 4
+	let impulseScale: CGFloat = 50
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
 			let currentLocation = touch.location(in: gameScene)

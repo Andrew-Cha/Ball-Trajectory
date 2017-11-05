@@ -36,10 +36,12 @@ class GameScene: SKScene {
 				if endingBallPositionIsPositive {
 					if player.position.x < 0 {
 						camFollowingPlayer = true
+						self.endingBallPositionIsPositive = nil
 					}
 				} else {
 					if player.position.x > 0 {
 						camFollowingPlayer = true
+						self.endingBallPositionIsPositive = nil
 					}
 				}
 			}
