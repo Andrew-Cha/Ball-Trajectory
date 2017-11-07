@@ -47,6 +47,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 			angleForceDelegate?.createAngleForceLabels()
 			if let initialLocation = initialLocation {
 				gameScene.draggingLine.dragStarted(at: initialLocation)
+				gameScene.trajectoryLine.initialTrajectoryPositionReceived(at: initialLocation)
 			}
 		}
 	}
@@ -55,10 +56,12 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		for touch in touches {
 			let currentLocation = touch.location(in: gameScene)
 			position = currentLocation
+			gameScene.trajectoryLine.removeFromParent()
 			if let initialLocation = initialLocation {
 				gameScene.draggingLine.positionChanged(to: currentLocation)
 				let offset = initialLocation - currentLocation
 				let angle = offset.angle * 180 / .pi
+				gameScene.trajectoryLine.velocityAndAngleChanged(angle: angle , velocity: offset.length * 5)
 				angleForceDelegate?.angleForceAndPositionChanged(angle: angle, force: offset.length, position: currentLocation)
 			}
 		}

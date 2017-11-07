@@ -13,6 +13,7 @@ class GameScene: SKScene {
 	var bottomBorder: BottomBorder!
 	var cam: SKCameraNode!
 	var draggingLine: DragLine!
+	var trajectoryLine: TrajectoryLine!
 	var camFollowingPlayer = false
 	var endingBallPositionIsPositive: Bool?
 	
@@ -20,6 +21,7 @@ class GameScene: SKScene {
 		player = Ball(in: self)
 		bottomBorder = BottomBorder(in: self)
 		draggingLine = DragLine(in: self)
+		trajectoryLine = TrajectoryLine(in: self)
 		cam = SKCameraNode()
 		scene?.camera = cam
 	}

@@ -22,6 +22,7 @@
 		DF6E08D31FA9F59C00D93A87 /* MyTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = DF6E08D21FA9F59C00D93A87 /* MyTileSet.sks */; };
 		DF71303F1FABEF3F00ECDB0D /* DragLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF71303E1FABEF3F00ECDB0D /* DragLine.swift */; };
 		DFCBED811FAF531F00D4E8FB /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCBED801FAF531E00D4E8FB /* Geometry.swift */; };
+		DFCBED831FB0FA7E00D4E8FB /* Trajectory Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCBED821FB0FA7E00D4E8FB /* Trajectory Line.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		DF6E08D21FA9F59C00D93A87 /* MyTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyTileSet.sks; sourceTree = "<group>"; };
 		DF71303E1FABEF3F00ECDB0D /* DragLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragLine.swift; sourceTree = "<group>"; };
 		DFCBED801FAF531E00D4E8FB /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
+		DFCBED821FB0FA7E00D4E8FB /* Trajectory Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trajectory Line.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				DF6E08CE1FA930B900D93A87 /* Ball.swift */,
 				DF6E08D01FA9353500D93A87 /* BorderRectangle.swift */,
 				DF71303E1FABEF3F00ECDB0D /* DragLine.swift */,
+				DFCBED821FB0FA7E00D4E8FB /* Trajectory Line.swift */,
 				DF6E089C1FA9307E00D93A87 /* GameScene.sks */,
 				DF6E089E1FA9307E00D93A87 /* Actions.sks */,
 				DF6E08D21FA9F59C00D93A87 /* MyTileSet.sks */,
@@ -293,6 +296,7 @@
 				DF6E08A31FA9307E00D93A87 /* GameViewController.swift in Sources */,
 				DF6E089B1FA9307E00D93A87 /* AppDelegate.swift in Sources */,
 				DF6E08D11FA9353500D93A87 /* BorderRectangle.swift in Sources */,
+				DFCBED831FB0FA7E00D4E8FB /* Trajectory Line.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
