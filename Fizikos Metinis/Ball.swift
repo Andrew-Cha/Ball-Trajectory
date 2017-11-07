@@ -56,7 +56,6 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		for touch in touches {
 			let currentLocation = touch.location(in: gameScene)
 			position = currentLocation
-			gameScene.trajectoryLine.removeFromParent()
 			if let initialLocation = initialLocation {
 				gameScene.draggingLine.positionChanged(to: currentLocation)
 				let offset = initialLocation - currentLocation
