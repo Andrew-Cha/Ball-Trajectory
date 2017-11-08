@@ -39,21 +39,7 @@ class TrajectoryLine: SKShapeNode {
 	func velocityAndAngleChanged(angle: CGFloat, velocity: CGFloat) {
 		trajectoryLineRemove()
 		//var newAngle = angle >= 0 ? angle : 360 + angle
-		//i need degrees, sub 90 or at 90.
-		/*
-		if newAngle > 90 {
-			newAngle = newAngle - 90
-		}
-		
-		if newAngle > 90 {
-			newAngle = newAngle - 90
-		}
-		
-		if newAngle > 90 {
-			newAngle = newAngle - 90
-		}
-		print("Sumazintas iki 90 laipsniu ar maziau: \(newAngle)")
-		*/
+	
 		let newAngle = angle
 		let maxTime = (velocity * sin(newAngle) * 2) / gravity
 		//let maxFlyDistance = velocity * cos(angle) * maxTime //to calculate landing point, nuo ten vel trajektorija piest is naujo
