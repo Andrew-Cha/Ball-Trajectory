@@ -56,25 +56,24 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		for touch in touches {
 			let currentLocation = touch.location(in: gameScene)
 			position = currentLocation
-			gameScene.trajectoryLine.velocityLineRemove()
 			if let initialLocation = initialLocation {
 				gameScene.draggingLine.positionChanged(to: currentLocation)
 				let offset = initialLocation - currentLocation
 				let angle = offset.angle * 180 / .pi
-				gameScene.trajectoryLine.velocityAndAngleChanged(angle: angle , velocity: offset.length * 50)
+				gameScene.trajectoryLine.velocityAndAngleChanged(angle: angle , velocity: offset.length)
 				angleForceDelegate?.angleForceAndPositionChanged(angle: angle, force: offset.length, position: currentLocation)
 			}
 		}
 	}
 	
-	let impulseScale: CGFloat = 50
+	let impulseScale: CGFloat = 1
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
 			let currentLocation = touch.location(in: gameScene)
 			physicsBody?.isDynamic = true
 			if let initialLocation = initialLocation {
 				let offset = (initialLocation - currentLocation) * impulseScale
-				physicsBody?.applyForce(offset.asVector)
+				physicsBody?.applyImpulse(offset.asVector)
 				if position.x > 0 {
 					gameScene.endingBallPositionIsPositive = true
 				} else {

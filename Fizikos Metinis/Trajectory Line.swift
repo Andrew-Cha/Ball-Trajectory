@@ -37,6 +37,7 @@ class TrajectoryLine: SKShapeNode {
 	}
 	
 	func velocityAndAngleChanged(angle: CGFloat, velocity: CGFloat) {
+		trajectoryLineRemove()
 		//var newAngle = angle >= 0 ? angle : 360 + angle
 		//i need degrees, sub 90 or at 90.
 		/*
@@ -78,7 +79,7 @@ class TrajectoryLine: SKShapeNode {
 		}
 	}
 	
-	func velocityLineRemove() {
+	func trajectoryLineRemove() {
 		for dot in storedDots {
 			dot.removeFromParent()
 			storedDots = []
