@@ -47,7 +47,6 @@ class Ball: SKSpriteNode, BallPosResetButton {
 			initialLocation = touch.location(in: gameScene)
 			angleForceDelegate?.createAngleForceLabels()
 			if let initialLocation = initialLocation {
-				gameScene.draggingLine.dragStarted(at: initialLocation)
 				gameScene.trajectoryLine.initialTrajectoryPositionReceived(at: initialLocation)
 			}
 		}
