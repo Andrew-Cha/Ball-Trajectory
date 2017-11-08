@@ -31,37 +31,35 @@ class TrajectoryLine: SKShapeNode {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	let currentDragPath = UIBezierPath()
 	func initialTrajectoryPositionReceived(at point: CGPoint) {
-		currentDragPath.move(to: point)
+		
 	}
 	
-	func velocityAndAngleChanged(angle: CGFloat, velocity: CGFloat) {
+	func velocityAndAngleChanged(to offset: CGVector) {
 		trajectoryLineRemove()
 		//var newAngle = angle >= 0 ? angle : 360 + angle
-	
-		let newAngle = angle
-		let maxTime = (velocity * sin(newAngle) * 2) / gravity
+		
+		let maxTime = (offset.dy * 2) / gravity
 		//let maxFlyDistance = velocity * cos(angle) * maxTime //to calculate landing point, nuo ten vel trajektorija piest is naujo
 		for iteration in 1...100 {
-			let currentTime = maxTime / CGFloat(iteration)
-			
-			let xAxis = velocity * cos(angle) * currentTime
+			let currentTime = maxTime / CGFloat(iteration) / 2
+			print("the current velocity in trajectory line is \(offset)o")
+			let xAxis = offset.dx * currentTime
 			//ball rises
-			if iteration <= 50 {
-				let yAxisLeftSide = (velocity * sin(angle) * (currentTime / 2)) - ((gravity * (currentTime / 2) * (currentTime / 2)) / 2 )
+			//if iteration <= 50 {
+				let yAxisLeftSide = (offset.dy * (currentTime / 2)) - ((gravity * (currentTime / 2) * (currentTime / 2)) / 2 )
 				let newDot = SKSpriteNode(imageNamed: "ball.png")
 				newDot.position = CGPoint(x: xAxis, y: yAxisLeftSide)
 				gameScene.addChild(newDot)
 				storedDots.append(newDot)
-			} else {
+		//	} else {
 				//ball falls
-				let yAxisRightSide = (gravity * (currentTime / 2) * (currentTime / 2)) / 2
-				let newDot = SKSpriteNode(imageNamed: "ball.png")
-				newDot.position = CGPoint(x: xAxis, y: yAxisRightSide)
-				gameScene.addChild(newDot)
-				storedDots.append(newDot)
-			}
+			//	let yAxisRightSide = (gravity * (currentTime / 2) * (currentTime / 2)) / 2
+			//	let newDot = SKSpriteNode(imageNamed: "ball.png")
+			//	newDot.position = CGPoint(x: xAxis, y: yAxisRightSide)
+			//	gameScene.addChild(newDot)
+			//	storedDots.append(newDot)
+		//	}
 		}
 	}
 	

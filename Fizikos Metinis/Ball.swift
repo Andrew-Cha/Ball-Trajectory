@@ -25,7 +25,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		position = position
 		physicsBody = SKPhysicsBody(circleOfRadius: bodyRadius)
 		physicsBody?.allowsRotation = true
-		physicsBody?.mass = 0.2
+		//physicsBody?.mass = 0.1
 		physicsBody?.friction = 0
 		physicsBody?.restitution = 0.8
 		physicsBody?.isDynamic = false
@@ -61,7 +61,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 				gameScene.draggingLine.positionChanged(to: currentLocation)
 				let offset = initialLocation - currentLocation
 				let angle = offset.angle * 180 / .pi
-				gameScene.trajectoryLine.velocityAndAngleChanged(angle: offset.angle , velocity: offset.length)
+				gameScene.trajectoryLine.velocityAndAngleChanged(to: offset.asVector)
 				angleForceDelegate?.angleForceAndPositionChanged(angle: angle, force: offset.length, position: currentLocation)
 			}
 		}
@@ -75,6 +75,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 			if let initialLocation = initialLocation {
 				let offset = (initialLocation - currentLocation) * impulseScale
 				physicsBody?.applyImpulse(offset.asVector)
+				print("The current velocity for the ball is \(physicsBody?.velocity)")
 				if position.x > 0 {
 					gameScene.endingBallPositionIsPositive = true
 				} else {
