@@ -37,13 +37,13 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		physicsBody?.isDynamic = false
 		position = CGPoint(x: 0, y: 0)
 		isUserInteractionEnabled = true
+		gameScene.trajectoryLine.trajectoryLineRemove()
 	}
 	
 	var initialLocation: CGPoint?
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
 			isUserInteractionEnabled = false
-			gameScene.camFollowingPlayer = false
 			initialLocation = touch.location(in: gameScene)
 			angleForceDelegate?.createAngleForceLabels()
 			if let initialLocation = initialLocation {
@@ -56,7 +56,6 @@ class Ball: SKSpriteNode, BallPosResetButton {
 	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
 			let currentLocation = touch.location(in: gameScene)
-			position = currentLocation
 			if let initialLocation = initialLocation {
 				gameScene.draggingLine.positionChanged(to: currentLocation)
 				let offset = (initialLocation - currentLocation) * impulseScale
@@ -76,29 +75,24 @@ class Ball: SKSpriteNode, BallPosResetButton {
 				let offset = (initialLocation - currentLocation) * impulseScale
 				physicsBody?.applyImpulse(offset.asVector * physicsBody!.mass)
 				print("current physics body velocity after release is \(physicsBody!.velocity)")
-				if position.x > 0 {
-					gameScene.endingBallPositionIsPositive = true
-				} else {
-					gameScene.endingBallPositionIsPositive = false
-				}
+				gameScene.draggingLine.stopped()
+				angleForceDelegate?.angleForceLabelsRemove()
+				self.initialLocation = nil
 			}
-			gameScene.draggingLine.stopped()
-			angleForceDelegate?.angleForceLabelsRemove()
-			initialLocation = nil
 		}
 	}
 	
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+		required init?(coder aDecoder: NSCoder) {
+			fatalError("init(coder:) has not been implemented")
+		}
 	}
-}
-
-protocol BallPosResetButton {
-	func resetPosition()
-}
-
-protocol AngleAndForceLabel {
-	func createAngleForceLabels()
-	func angleForceAndPositionChanged(angle: CGFloat, force: CGFloat, position: CGPoint)
-	func angleForceLabelsRemove()
+	
+	protocol BallPosResetButton {
+		func resetPosition()
+	}
+	
+	protocol AngleAndForceLabel {
+		func createAngleForceLabels()
+		func angleForceAndPositionChanged(angle: CGFloat, force: CGFloat, position: CGPoint)
+		func angleForceLabelsRemove()
 }
