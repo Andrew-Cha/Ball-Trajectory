@@ -59,10 +59,10 @@ class Ball: SKSpriteNode, BallPosResetButton {
 			position = currentLocation
 			if let initialLocation = initialLocation {
 				gameScene.draggingLine.positionChanged(to: currentLocation)
-				let offset = initialLocation - currentLocation
+				let offset = (initialLocation - currentLocation) * impulseScale
 				let angle = offset.angle * 180 / .pi
-				gameScene.trajectoryLine.velocityAndAngleChanged(to: offset.asVector * impulseScale)
-				angleForceDelegate?.angleForceAndPositionChanged(angle: angle, force: offset.length * impulseScale, position: currentLocation)
+				gameScene.trajectoryLine.velocityAndAngleChanged(to: offset.asVector)
+				angleForceDelegate?.angleForceAndPositionChanged(angle: angle, force: offset.length, position: currentLocation)
 			}
 		}
 	}

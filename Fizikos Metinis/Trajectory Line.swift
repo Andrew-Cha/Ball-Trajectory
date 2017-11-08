@@ -42,12 +42,12 @@ class TrajectoryLine: SKShapeNode {
 		let maxTime = (offset.dy * 2) / gravity
 		//let maxFlyDistance = velocity * cos(angle) * maxTime //to calculate landing point, nuo ten vel trajektorija piest is naujo
 		for iteration in 1...100 {
-			let currentTime = maxTime / CGFloat(iteration) / 2
+			let currentTime = maxTime * CGFloat(iteration) / 100.0
 			print("the current velocity in trajectory line is \(offset)o")
 			let xAxis = offset.dx * currentTime
 			//ball rises
 			//if iteration <= 50 {
-				let yAxisLeftSide = (offset.dy * (currentTime / 2)) - ((gravity * (currentTime / 2) * (currentTime / 2)) / 2 )
+				let yAxisLeftSide = (offset.dy * currentTime ) - ((gravity * currentTime  * currentTime ) / 2 )
 				let newDot = SKSpriteNode(imageNamed: "ball.png")
 				newDot.position = CGPoint(x: xAxis, y: yAxisLeftSide)
 				gameScene.addChild(newDot)
