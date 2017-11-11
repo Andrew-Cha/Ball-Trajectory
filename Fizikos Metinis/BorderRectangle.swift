@@ -18,7 +18,7 @@ class BottomBorder: SKSpriteNode {
 		super.init(texture: BottomBorder.texture, color: .clear, size: CGSize(width: 9005000, height: 5))
 		physicsBody = SKPhysicsBody(rectangleOf: size)
 		physicsBody?.isDynamic = false
-		position = CGPoint(x: 0, y: -375)
+		position = CGPoint(x: 0, y: -21)
 		gameScene.addChild(self)
 	}
 	

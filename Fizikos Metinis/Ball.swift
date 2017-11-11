@@ -25,7 +25,8 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		position = position
 		physicsBody = SKPhysicsBody(circleOfRadius: bodyRadius)
 		physicsBody?.allowsRotation = true
-		//physicsBody?.mass = 0.1
+		physicsBody?.mass = 1
+		physicsBody?.linearDamping = 0
 		physicsBody?.friction = 0
 		physicsBody?.restitution = 0.8
 		physicsBody?.isDynamic = false
@@ -59,13 +60,13 @@ class Ball: SKSpriteNode, BallPosResetButton {
 				gameScene.draggingLine.positionChanged(to: currentLocation)
 				let offset = (initialLocation - currentLocation) * impulseScale
 				let angle = offset.angle * 180 / .pi
-				gameScene.trajectoryLine.velocityAndAngleChanged(to: offset.asVector)
-				angleForceDelegate?.angleForceAndPositionChanged(angle: angle, force: offset.length, position: currentLocation)
+				gameScene.trajectoryLine.velocityAndAngleChanged(to: offset.asVector / impulseScale)
+				angleForceDelegate?.angleForceAndPositionChanged(angle: angle, force: offset.length * impulseScale, position: currentLocation)
 			}
 		}
 	}
 	
-	let impulseScale: CGFloat = 3
+	let impulseScale: CGFloat = 12
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
 			let currentLocation = touch.location(in: gameScene)

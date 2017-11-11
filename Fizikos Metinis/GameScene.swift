@@ -25,7 +25,7 @@ class GameScene: SKScene {
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
-			if player.position.y >= -10 {
+			if player.position.y >= -750 {
 				cam.position = player.position
 			} else {
 				cam.position.x = player.position.x

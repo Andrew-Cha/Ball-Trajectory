@@ -47,7 +47,7 @@ class TrajectoryLine: SKShapeNode {
 			let xAxis = offset.dx * currentTime
 			//ball rises
 			//if iteration <= 50 {
-				let yAxisLeftSide = (offset.dy * currentTime ) - ((gravity * currentTime  * currentTime ) / 2 )
+				let yAxisLeftSide = offset.dy * currentTime - gravity * currentTime  * currentTime / 2
 				let newDot = SKSpriteNode(imageNamed: "ball.png")
 				newDot.position = CGPoint(x: xAxis, y: yAxisLeftSide)
 				gameScene.addChild(newDot)
