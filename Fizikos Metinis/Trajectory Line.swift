@@ -16,6 +16,8 @@ class TrajectoryLine: SKShapeNode {
 	let gravity: CGFloat = 9.8
 	let pixelsToMeters: CGFloat = 50
 	var storedDots: [SKSpriteNode] = []
+	let divisionMultiplier: CGFloat = 12.2586
+	let dotTexture = SKTexture(imageNamed: "whiteDot.png")
 	//s(max) = velocity * cos(angle) * timeMax
 	//s = velocity * cos(angle) * time
 	//h = velocity * sin(angle) * time - (gravity*time^2) / 2
@@ -37,29 +39,18 @@ class TrajectoryLine: SKShapeNode {
 	
 	func velocityAndAngleChanged(to offset: CGVector) {
 		trajectoryLineRemove()
-		//var newAngle = angle >= 0 ? angle : 360 + angle
-		
+		let offset = offset.asVector / divisionMultiplier
 		let maxTime = (offset.dy * 2) / gravity
 		//let maxFlyDistance = velocity * cos(angle) * maxTime //to calculate landing point, nuo ten vel trajektorija piest is naujo
-		for iteration in 1...100 {
-			let currentTime = maxTime * CGFloat(iteration) / 100.0
+		for iteration in 1...200 {
+			let currentTime = maxTime * CGFloat(iteration) / 200.0
 			print("the current velocity in trajectory line is \(offset)o")
 			let xAxis = offset.dx * currentTime
-			//ball rises
-			//if iteration <= 50 {
-				let yAxisLeftSide = offset.dy * currentTime - gravity * currentTime  * currentTime / 2
-				let newDot = SKSpriteNode(imageNamed: "ball.png")
+			let yAxisLeftSide = offset.dy * currentTime - gravity * currentTime  * currentTime / 2
+			let newDot = SKSpriteNode(texture: dotTexture)
 				newDot.position = CGPoint(x: xAxis, y: yAxisLeftSide)
 				gameScene.addChild(newDot)
 				storedDots.append(newDot)
-		//	} else {
-				//ball falls
-			//	let yAxisRightSide = (gravity * (currentTime / 2) * (currentTime / 2)) / 2
-			//	let newDot = SKSpriteNode(imageNamed: "ball.png")
-			//	newDot.position = CGPoint(x: xAxis, y: yAxisRightSide)
-			//	gameScene.addChild(newDot)
-			//	storedDots.append(newDot)
-		//	}
 		}
 	}
 	
