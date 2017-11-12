@@ -26,6 +26,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		physicsBody = SKPhysicsBody(circleOfRadius: bodyRadius)
 		physicsBody?.allowsRotation = true
 		physicsBody?.mass = 1
+		physicsBody?.linearDamping = 0
 		physicsBody?.angularDamping = 1
 		physicsBody?.friction = 1
 		//physicsBody?.restitution = 0.8
