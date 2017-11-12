@@ -50,10 +50,9 @@ class TrajectoryLine: SKShapeNode {
 			let currentTime = maxTime * CGFloat(iteration) / dotCount
 			let x = offset.dx * currentTime
 			let y = offset.dy * currentTime - gravity * currentTime * currentTime / 2
-			for dot in storedDots {
-				dot.position = CGPoint(x: x, y: y)
-				gameScene.addChild(dot)
-			}
+			let dot = storedDots[iteration - 1]
+			dot.position = CGPoint(x: x, y: y)
+			gameScene.addChild(dot)
 		}
 	}
 	
