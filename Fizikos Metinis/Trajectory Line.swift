@@ -15,10 +15,10 @@ class TrajectoryLine: SKShapeNode {
 	var initialPosition: CGPoint?
 	let gravity: CGFloat = 9.8
 	let pixelsToMeters: CGFloat = 50
-	let divisionMultiplier: CGFloat = 12.2586
+	let divisionMultiplier: CGFloat = 12.275
 	let dotTexture = SKTexture(imageNamed: "whiteDot.png")
 	var storedDots: [SKSpriteNode] = []
-	let dotCount: CGFloat = 200
+	let dotCount = 200
 	//s(max) = velocity * cos(angle) * timeMax
 	//s = velocity * cos(angle) * time
 	//h = velocity * sin(angle) * time - (gravity*time^2) / 2
@@ -46,8 +46,8 @@ class TrajectoryLine: SKShapeNode {
 		let offset = offset / divisionMultiplier
 		let maxTime = abs(offset.dy * 2) / gravity
 		//let maxFlyDistance = velocity * cos(angle) * maxTime //to calculate landing point
-		for iteration in 1...Int(dotCount) {
-			let currentTime = maxTime * CGFloat(iteration) / dotCount
+		for iteration in 1...dotCount {
+			let currentTime = maxTime * CGFloat(iteration) / CGFloat(dotCount)
 			let x = offset.dx * currentTime
 			let y = offset.dy * currentTime - gravity * currentTime * currentTime / 2
 			let dot = storedDots[iteration - 1]
