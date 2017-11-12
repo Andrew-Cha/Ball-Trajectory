@@ -34,10 +34,6 @@ class TrajectoryLine: SKShapeNode {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	func initialTrajectoryPositionReceived(at point: CGPoint) {
-		
-	}
-	
 	func createDotsToStore() {
 		for _ in 1...Int(dotCount) {
 			let newDot = SKSpriteNode(texture: dotTexture)

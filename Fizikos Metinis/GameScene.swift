@@ -14,7 +14,7 @@ class GameScene: SKScene {
 	var cam: SKCameraNode!
 	var draggingLine: DragLine!
 	var trajectoryLine: TrajectoryLine!
-
+	
 	override func sceneDidLoad() {
 		player = Ball(in: self)
 		bottomBorder = BottomBorder(in: self)
@@ -29,10 +29,10 @@ class GameScene: SKScene {
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
-			if player.position.y >= -750 {
-				cam.position = player.position
-			} else {
-				cam.position.x = player.position.x
+		if player.position.y >= -750 {
+			cam.position = player.position
+		} else {
+			cam.position.x = player.position.x
 		}
 	}
 }
