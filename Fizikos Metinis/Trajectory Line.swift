@@ -28,6 +28,7 @@ class TrajectoryLine: SKShapeNode {
 	init(in gameScene: GameScene) {
 		super.init()
 		self.gameScene = gameScene
+		gameScene.addChild(self)
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -41,9 +42,14 @@ class TrajectoryLine: SKShapeNode {
 		}
 	}
 	
-	func velocityAndAngleChanged(to offset: CGVector) {
-		trajectoryLineRemove()
-		let offset = offset / divisionMultiplier
+	func displayDots() {
+		for dot in storedDots {
+			addChild(dot)
+		}
+	}
+	
+	func update(forOffset: CGVector) {
+		let offset = forOffset / divisionMultiplier
 		let maxTime = abs(offset.dy * 2) / gravity
 		//let maxFlyDistance = velocity * cos(angle) * maxTime //to calculate landing point
 		for iteration in 1...dotCount {
@@ -52,13 +58,10 @@ class TrajectoryLine: SKShapeNode {
 			let y = offset.dy * currentTime - gravity * currentTime * currentTime / 2
 			let dot = storedDots[iteration - 1]
 			dot.position = CGPoint(x: x, y: y)
-			gameScene.addChild(dot)
 		}
 	}
 	
-	func trajectoryLineRemove() {
-		for dot in storedDots {
-			dot.removeFromParent()
-		}
+	func remove() {
+		removeAllChildren()
 	}
 }

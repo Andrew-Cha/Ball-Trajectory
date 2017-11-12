@@ -39,7 +39,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		physicsBody?.isDynamic = false
 		position = CGPoint(x: 0, y: 0)
 		isUserInteractionEnabled = true
-		gameScene.trajectoryLine.trajectoryLineRemove()
+		gameScene.trajectoryLine.remove()
 	}
 	
 	var initialLocation: CGPoint?
@@ -48,6 +48,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 			isUserInteractionEnabled = false
 			initialLocation = touch.location(in: gameScene)
 			angleForceDelegate?.createAngleForceLabels()
+			gameScene.trajectoryLine.displayDots()
 		}
 	}
 	
@@ -58,7 +59,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 				gameScene.draggingLine.positionChanged(to: currentLocation)
 				let offset = (initialLocation - currentLocation) * impulseScale
 				let angle = offset.angle * 180 / .pi
-				gameScene.trajectoryLine.velocityAndAngleChanged(to: offset.asVector)
+				gameScene.trajectoryLine.update(forOffset: offset.asVector)
 				angleForceDelegate?.angleForceAndPositionChanged(angle: angle, force: offset.length, position: currentLocation)
 			}
 		}
@@ -72,7 +73,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 			if let initialLocation = initialLocation {
 				let offset = (initialLocation - currentLocation) * impulseScale
 				physicsBody?.applyImpulse(offset.asVector * physicsBody!.mass)
-				gameScene.trajectoryLine.velocityAndAngleChanged(to: offset.asVector)
+				gameScene.trajectoryLine.update(forOffset: offset.asVector)
 				gameScene.draggingLine.stopped()
 				angleForceDelegate?.angleForceLabelsRemove()
 				self.initialLocation = nil
