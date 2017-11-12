@@ -13,7 +13,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 	static let texture = SKTexture(imageNamed: "ball.png")
 	let bodyRadius: CGFloat
 	weak var gameScene: GameScene!
-	var angleForceDelegate: AngleAndForceLabel?
+	var throwStatsDisplayDelegate: ThrowStatsDisplay?
 	
 	init(in gameScene: GameScene) {
 		self.gameScene = gameScene
@@ -47,7 +47,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		for touch in touches {
 			isUserInteractionEnabled = false
 			initialLocation = touch.location(in: gameScene)
-			angleForceDelegate?.createAngleForceLabels()
+			throwStatsDisplayDelegate?.throwStatsCreate()
 			gameScene.trajectoryLine.displayDots()
 		}
 	}
@@ -60,7 +60,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 				let offset = (initialLocation - currentLocation) * impulseScale
 				let angle = offset.angle * 180 / .pi
 				gameScene.trajectoryLine.update(forOffset: offset.asVector)
-				angleForceDelegate?.angleForceAndPositionChanged(angle: angle, force: offset.length, position: currentLocation)
+				throwStatsDisplayDelegate?.throwStatsUpdate(angle: angle, force: offset.length, position: currentLocation)
 			}
 		}
 	}
@@ -75,7 +75,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 				physicsBody?.applyImpulse(offset.asVector * physicsBody!.mass)
 				gameScene.trajectoryLine.update(forOffset: offset.asVector)
 				gameScene.draggingLine.stopped()
-				angleForceDelegate?.angleForceLabelsRemove()
+				throwStatsDisplayDelegate?.throwStatsRemove()
 				self.initialLocation = nil
 			}
 		}
@@ -90,8 +90,8 @@ protocol BallPosResetButton {
 	func resetPosition()
 }
 
-protocol AngleAndForceLabel {
-	func createAngleForceLabels()
-	func angleForceAndPositionChanged(angle: CGFloat, force: CGFloat, position: CGPoint)
-	func angleForceLabelsRemove()
+protocol ThrowStatsDisplay {
+	func throwStatsCreate()
+	func throwStatsUpdate(angle: CGFloat, force: CGFloat, position: CGPoint)
+	func throwStatsRemove()
 }

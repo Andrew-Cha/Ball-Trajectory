@@ -9,7 +9,7 @@
 import UIKit
 import SpriteKit
 
-class GameViewController: UIViewController, AngleAndForceLabel {
+class GameViewController: UIViewController, ThrowStatsDisplay {
 	var ballButtonDelegate: BallPosResetButton?
 	@IBOutlet weak var forceLabel: UILabel!
 	@IBOutlet weak var angleLabel: UILabel!
@@ -26,7 +26,7 @@ class GameViewController: UIViewController, AngleAndForceLabel {
 			scene.scaleMode = .aspectFill
 			view.presentScene(scene)
 			ballButtonDelegate = scene.player
-			scene.player.angleForceDelegate = self
+			scene.player.throwStatsDisplayDelegate = self
 			gameScene = view.scene
 			
 			view.showsFPS = true
@@ -38,12 +38,12 @@ class GameViewController: UIViewController, AngleAndForceLabel {
 		ballButtonDelegate?.resetPosition()
 	}
 	
-	func createAngleForceLabels() {
+	func throwStatsCreate() {
 		angleLabel.isHidden = false
 		forceLabel.isHidden = false
 	}
 	
-	func angleForceAndPositionChanged(angle: CGFloat, force: CGFloat, position: CGPoint) {
+	func throwStatsUpdate(angle: CGFloat, force: CGFloat, position: CGPoint) {
 		//if the labels are outside of the view make them be below the finger not above
 		let convertedPosition = gameView.convert(position, from: gameScene)
 		angleLabel.center = CGPoint(x: convertedPosition.x, y: convertedPosition.y - 70)
@@ -56,7 +56,7 @@ class GameViewController: UIViewController, AngleAndForceLabel {
 		forceLabel.text = "\(numberFormatter.string(from: force as NSNumber)!) Ns"
 	}
 	
-	func angleForceLabelsRemove() {
+	func throwStatsRemove() {
 		angleLabel.isHidden = true
 		forceLabel.isHidden = true
 	}

@@ -12,9 +12,7 @@ import SpriteKit
 class TrajectoryLine: SKShapeNode {
 	var dashedLine: SKShapeNode?
 	var gameScene: GameScene!
-	var initialPosition: CGPoint?
 	let gravity: CGFloat = 9.8
-	let pixelsToMeters: CGFloat = 50
 	let divisionMultiplier: CGFloat = 12.275
 	let dotTexture = SKTexture(imageNamed: "whiteDot.png")
 	var storedDots: [SKSpriteNode] = []
@@ -45,6 +43,7 @@ class TrajectoryLine: SKShapeNode {
 	func displayDots() {
 		for dot in storedDots {
 			addChild(dot)
+			dot.position = .zero
 		}
 	}
 	
