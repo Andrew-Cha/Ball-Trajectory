@@ -24,6 +24,10 @@ class GameScene: SKScene {
 		scene?.camera = cam
 	}
 	
+	override func didMove(to view: SKView) {
+		trajectoryLine.createDotsToStore()
+	}
+	
 	override func update(_ currentTime: TimeInterval) {
 			if player.position.y >= -750 {
 				cam.position = player.position

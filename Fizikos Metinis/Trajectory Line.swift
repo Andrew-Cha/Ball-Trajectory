@@ -15,9 +15,10 @@ class TrajectoryLine: SKShapeNode {
 	var initialPosition: CGPoint?
 	let gravity: CGFloat = 9.8
 	let pixelsToMeters: CGFloat = 50
-	var storedDots: [SKSpriteNode] = []
 	let divisionMultiplier: CGFloat = 12.2586
 	let dotTexture = SKTexture(imageNamed: "whiteDot.png")
+	var storedDots: [SKSpriteNode] = []
+	let dotCount: CGFloat = 200
 	//s(max) = velocity * cos(angle) * timeMax
 	//s = velocity * cos(angle) * time
 	//h = velocity * sin(angle) * time - (gravity*time^2) / 2
@@ -37,27 +38,32 @@ class TrajectoryLine: SKShapeNode {
 		
 	}
 	
+	func createDotsToStore() {
+		for _ in 1...Int(dotCount) {
+			let newDot = SKSpriteNode(texture: dotTexture)
+			storedDots.append(newDot)
+		}
+	}
+	
 	func velocityAndAngleChanged(to offset: CGVector) {
 		trajectoryLineRemove()
-		let offset = offset.asVector / divisionMultiplier
-		let maxTime = (offset.dy * 2) / gravity
-		//let maxFlyDistance = velocity * cos(angle) * maxTime //to calculate landing point, nuo ten vel trajektorija piest is naujo
-		for iteration in 1...200 {
-			let currentTime = maxTime * CGFloat(iteration) / 200.0
-			print("the current velocity in trajectory line is \(offset)o")
-			let xAxis = offset.dx * currentTime
-			let yAxisLeftSide = offset.dy * currentTime - gravity * currentTime  * currentTime / 2
-			let newDot = SKSpriteNode(texture: dotTexture)
-				newDot.position = CGPoint(x: xAxis, y: yAxisLeftSide)
-				gameScene.addChild(newDot)
-				storedDots.append(newDot)
+		let offset = offset / divisionMultiplier
+		let maxTime = abs(offset.dy * 2) / gravity
+		//let maxFlyDistance = velocity * cos(angle) * maxTime //to calculate landing point
+		for iteration in 1...Int(dotCount) {
+			let currentTime = maxTime * CGFloat(iteration) / dotCount
+			let x = offset.dx * currentTime
+			let y = offset.dy * currentTime - gravity * currentTime * currentTime / 2
+			for dot in storedDots {
+				dot.position = CGPoint(x: x, y: y)
+				gameScene.addChild(dot)
+			}
 		}
 	}
 	
 	func trajectoryLineRemove() {
 		for dot in storedDots {
 			dot.removeFromParent()
-			storedDots = []
 		}
 	}
 }

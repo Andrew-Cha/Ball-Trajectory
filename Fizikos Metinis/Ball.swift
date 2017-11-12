@@ -22,14 +22,13 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		super.init(texture: Ball.texture, color: .clear, size: Ball.texture.size())
 		isUserInteractionEnabled = true
 		name = "player"
-		position = position
 		zPosition = 1
 		physicsBody = SKPhysicsBody(circleOfRadius: bodyRadius)
 		physicsBody?.allowsRotation = true
 		physicsBody?.mass = 1
 		physicsBody?.linearDamping = 0
-		physicsBody?.friction = 0
-		physicsBody?.restitution = 0.8
+		physicsBody?.friction = 10000
+		//physicsBody?.restitution = 0.8
 		physicsBody?.isDynamic = false
 		
 		gameScene.addChild(self)
@@ -76,7 +75,6 @@ class Ball: SKSpriteNode, BallPosResetButton {
 				let offset = (initialLocation - currentLocation) * impulseScale
 				physicsBody?.applyImpulse(offset.asVector * physicsBody!.mass)
 				gameScene.trajectoryLine.velocityAndAngleChanged(to: offset.asVector)
-				print("current physics body velocity after release is \(physicsBody!.velocity)")
 				gameScene.draggingLine.stopped()
 				angleForceDelegate?.angleForceLabelsRemove()
 				self.initialLocation = nil
