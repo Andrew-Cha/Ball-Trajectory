@@ -20,6 +20,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		self.bodyRadius = Ball.texture.size().width / 2
 		
 		super.init(texture: Ball.texture, color: .clear, size: Ball.texture.size())
+		position = CGPoint(x: 0, y: size.height / 2)
 		isUserInteractionEnabled = true
 		name = "player"
 		zPosition = 1
@@ -37,16 +38,16 @@ class Ball: SKSpriteNode, BallPosResetButton {
 	
 	func resetPosition() {
 		physicsBody?.isDynamic = false
-		position = CGPoint(x: 0, y: 0)
+		position = CGPoint(x: 0, y: size.height / 2)
 		isUserInteractionEnabled = true
 		gameScene.trajectoryLine.remove()
 	}
 	
 	var initialLocation: CGPoint?
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-		for touch in touches {
+		for _ in touches {
 			isUserInteractionEnabled = false
-			initialLocation = touch.location(in: gameScene)
+			initialLocation = position
 			throwStatsDisplayDelegate?.throwStatsCreate()
 			gameScene.trajectoryLine.displayDots()
 		}
@@ -55,13 +56,11 @@ class Ball: SKSpriteNode, BallPosResetButton {
 	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
 			let currentLocation = touch.location(in: gameScene)
-			if let initialLocation = initialLocation {
 				gameScene.draggingLine.positionChanged(to: currentLocation)
-				let offset = (initialLocation - currentLocation) * impulseScale
+				let offset = (position - currentLocation) * impulseScale
 				let angle = offset.angle * 180 / .pi
 				gameScene.trajectoryLine.update(forOffset: offset.asVector)
 				throwStatsDisplayDelegate?.throwStatsUpdate(angle: angle, force: offset.length, position: currentLocation)
-			}
 		}
 	}
 	

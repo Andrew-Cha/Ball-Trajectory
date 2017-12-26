@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF571D951FC0DF5A00DECC72 /* Hoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF571D941FC0DF5A00DECC72 /* Hoop.swift */; };
 		DF6E089B1FA9307E00D93A87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E089A1FA9307E00D93A87 /* AppDelegate.swift */; };
 		DF6E089D1FA9307E00D93A87 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = DF6E089C1FA9307E00D93A87 /* GameScene.sks */; };
 		DF6E089F1FA9307E00D93A87 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = DF6E089E1FA9307E00D93A87 /* Actions.sks */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF571D941FC0DF5A00DECC72 /* Hoop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hoop.swift; sourceTree = "<group>"; usesTabs = 1; };
 		DF6E08971FA9307E00D93A87 /* Fizikos Metinis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fizikos Metinis.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF6E089A1FA9307E00D93A87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF6E089C1FA9307E00D93A87 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -92,6 +94,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF571D961FC0DF8000DECC72 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				DF6E08CE1FA930B900D93A87 /* Ball.swift */,
+				DF6E08D01FA9353500D93A87 /* BorderRectangle.swift */,
+				DF571D941FC0DF5A00DECC72 /* Hoop.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		DF571D971FC0DF9200DECC72 /* Physics Interactions */ = {
+			isa = PBXGroup;
+			children = (
+				DF71303E1FABEF3F00ECDB0D /* DragLine.swift */,
+				DFCBED821FB0FA7E00D4E8FB /* Trajectory Line.swift */,
+			);
+			path = "Physics Interactions";
+			sourceTree = "<group>";
+		};
 		DF6E088E1FA9307E00D93A87 = {
 			isa = PBXGroup;
 			children = (
@@ -115,11 +136,9 @@
 		DF6E08991FA9307E00D93A87 /* Fizikos Metinis */ = {
 			isa = PBXGroup;
 			children = (
+				DF571D971FC0DF9200DECC72 /* Physics Interactions */,
+				DF571D961FC0DF8000DECC72 /* Objects */,
 				DF6E089A1FA9307E00D93A87 /* AppDelegate.swift */,
-				DF6E08CE1FA930B900D93A87 /* Ball.swift */,
-				DF6E08D01FA9353500D93A87 /* BorderRectangle.swift */,
-				DF71303E1FABEF3F00ECDB0D /* DragLine.swift */,
-				DFCBED821FB0FA7E00D4E8FB /* Trajectory Line.swift */,
 				DF6E089C1FA9307E00D93A87 /* GameScene.sks */,
 				DF6E089E1FA9307E00D93A87 /* Actions.sks */,
 				DF6E08D21FA9F59C00D93A87 /* MyTileSet.sks */,
@@ -293,6 +312,7 @@
 				DFCBED811FAF531F00D4E8FB /* Geometry.swift in Sources */,
 				DF71303F1FABEF3F00ECDB0D /* DragLine.swift in Sources */,
 				DF6E08A11FA9307E00D93A87 /* GameScene.swift in Sources */,
+				DF571D951FC0DF5A00DECC72 /* Hoop.swift in Sources */,
 				DF6E08A31FA9307E00D93A87 /* GameViewController.swift in Sources */,
 				DF6E089B1FA9307E00D93A87 /* AppDelegate.swift in Sources */,
 				DF6E08D11FA9353500D93A87 /* BorderRectangle.swift in Sources */,

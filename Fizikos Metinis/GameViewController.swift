@@ -11,10 +11,12 @@ import SpriteKit
 
 class GameViewController: UIViewController, ThrowStatsDisplay {
 	var ballButtonDelegate: BallPosResetButton?
+	var trajectoryButtonDelegate: TrajectoryButton?
 	@IBOutlet weak var forceLabel: UILabel!
 	@IBOutlet weak var angleLabel: UILabel!
 	@IBOutlet var gameView: SKView!
 	var gameScene: SKScene!
+	var statsShown = true
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -26,6 +28,7 @@ class GameViewController: UIViewController, ThrowStatsDisplay {
 			scene.scaleMode = .aspectFill
 			view.presentScene(scene)
 			ballButtonDelegate = scene.player
+			trajectoryButtonDelegate = scene.trajectoryLine
 			scene.player.throwStatsDisplayDelegate = self
 			gameScene = view.scene
 			
@@ -34,16 +37,35 @@ class GameViewController: UIViewController, ThrowStatsDisplay {
 		}
 	}
 	
+	@IBAction func statsButtonPressed(_ sender: Any) {
+		if statsShown {
+			statsShown = false
+			angleLabel.isHidden = true
+			forceLabel.isHidden = true
+		} else {
+			statsShown = true
+		}
+	}
+	
 	@IBAction func ballButtonPressed() {
 		ballButtonDelegate?.resetPosition()
 	}
 	
+	@IBAction func trajectoryButtonPressed(_ sender: Any) {
+		trajectoryButtonDelegate?.show()
+	}
+	
 	func throwStatsCreate() {
+		if statsShown {
 		angleLabel.isHidden = false
+		angleLabel.text = ""
 		forceLabel.isHidden = false
+		forceLabel.text = ""
+		}
 	}
 	
 	func throwStatsUpdate(angle: CGFloat, force: CGFloat, position: CGPoint) {
+		if statsShown {
 		//if the labels are outside of the view make them be below the finger not above
 		let convertedPosition = gameView.convert(position, from: gameScene)
 		angleLabel.center = CGPoint(x: convertedPosition.x, y: convertedPosition.y - 70)
@@ -55,10 +77,13 @@ class GameViewController: UIViewController, ThrowStatsDisplay {
 		angleLabel.text = "\(numberFormatter.string(from: newAngle as NSNumber)!)°"
 		forceLabel.text = "\(numberFormatter.string(from: force as NSNumber)!) Ns"
 	}
+	}
 	
 	func throwStatsRemove() {
+		if statsShown {
 		angleLabel.isHidden = true
 		forceLabel.isHidden = true
+		}
 	}
 	
 	override var shouldAutorotate: Bool {

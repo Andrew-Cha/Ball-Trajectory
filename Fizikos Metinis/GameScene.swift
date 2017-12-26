@@ -14,12 +14,14 @@ class GameScene: SKScene {
 	var cam: SKCameraNode!
 	var draggingLine: DragLine!
 	var trajectoryLine: TrajectoryLine!
+	var hoop = SKNode()
 	
 	override func sceneDidLoad() {
 		player = Ball(in: self)
 		bottomBorder = BottomBorder(in: self)
 		draggingLine = DragLine(in: self)
 		trajectoryLine = TrajectoryLine(in: self)
+		hoop = Basketball(in: self)
 		cam = SKCameraNode()
 		scene?.camera = cam
 	}
