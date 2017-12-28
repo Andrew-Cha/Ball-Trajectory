@@ -2,7 +2,7 @@
 //  GameScene.swift
 //  Fizikos Metinis
 //
-//  Created by Andrius on 11/1/17.
+//  Created by Andrius on 12/26/17.
 //  Copyright © 2017 Andrius. All rights reserved.
 //
 
@@ -14,20 +14,24 @@ class GameScene: SKScene {
 	var cam: SKCameraNode!
 	var draggingLine: DragLine!
 	var trajectoryLine: TrajectoryLine!
-	var hoop = SKNode()
+	var hoop: SKNode?
 	
-	override func sceneDidLoad() {
-		player = Ball(in: self)
-		bottomBorder = BottomBorder(in: self)
-		draggingLine = DragLine(in: self)
-		trajectoryLine = TrajectoryLine(in: self)
-		hoop = Basketball(in: self)
-		cam = SKCameraNode()
-		scene?.camera = cam
+	init(isGame: Bool) {
+		super.init()
+		
+		if isGame {
+			loadGame()
+		} else {
+			loadSimulation()
+		}
+	}
+	
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
 	}
 	
 	override func didMove(to view: SKView) {
-		trajectoryLine.createDotsToStore()
+		
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
@@ -36,5 +40,26 @@ class GameScene: SKScene {
 		} else {
 			cam.position.x = player.position.x
 		}
+	}
+	
+	func loadGame() {
+		player = Ball(in: self)
+		bottomBorder = BottomBorder(in: self)
+		draggingLine = DragLine(in: self)
+		trajectoryLine = TrajectoryLine(in: self)
+		hoop = Basketball(in: self)
+		cam = SKCameraNode()
+		scene?.camera = cam
+		trajectoryLine.createDotsToStore()
+	}
+	
+	func loadSimulation() {
+		player = Ball(in: self)
+		bottomBorder = BottomBorder(in: self)
+		draggingLine = DragLine(in: self)
+		trajectoryLine = TrajectoryLine(in: self)
+		cam = SKCameraNode()
+		scene?.camera = cam
+		trajectoryLine.createDotsToStore()
 	}
 }

@@ -11,7 +11,7 @@ import SpriteKit
 
 class TrajectoryLine: SKShapeNode, TrajectoryButton {
 	var dashedLine: SKShapeNode?
-	var gameScene: GameScene!
+	weak var gameScene: GameScene!
 	let gravity: CGFloat = 9.8
 	let divisionMultiplier: CGFloat = 12.275
 	let dotTexture = SKTexture(imageNamed: "whiteDot.png")
@@ -53,7 +53,7 @@ class TrajectoryLine: SKShapeNode, TrajectoryButton {
 			for iteration in 1...dotCount {
 				let currentTime = maxTime * CGFloat(iteration) / CGFloat(dotCount)
 				let x = offset.dx * currentTime
-				let y = offset.dy * currentTime - gravity * currentTime * currentTime / 2
+				let y = offset.dy * currentTime - gravity * currentTime * currentTime / 2 + 24
 				let dot = storedDots[iteration - 1]
 				dot.position = CGPoint(x: x, y: y)
 			}

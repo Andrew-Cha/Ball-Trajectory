@@ -2,10 +2,9 @@
 //  GameViewController.swift
 //  Fizikos Metinis
 //
-//  Created by Andrius on 11/1/17.
+//  Created by Andrius on 12/26/17.
 //  Copyright © 2017 Andrius. All rights reserved.
 //
-
 import UIKit
 import SpriteKit
 
@@ -15,22 +14,23 @@ class GameViewController: UIViewController, ThrowStatsDisplay {
 	@IBOutlet weak var forceLabel: UILabel!
 	@IBOutlet weak var angleLabel: UILabel!
 	@IBOutlet var gameView: SKView!
-	var gameScene: SKScene!
+	weak var gameScene: GameScene!
 	var statsShown = true
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		if let view = self.view as? SKView {
-			guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
+			guard var scene = SKScene(fileNamed: "GameScene") as? GameScene else {
 				fatalError("Could not load scene!")
 			}
-			// Set the scale mode to scale to fit the window
-			scene.scaleMode = .aspectFill
+			scene = GameScene(isGame: false)
 			view.presentScene(scene)
-			ballButtonDelegate = scene.player
-			trajectoryButtonDelegate = scene.trajectoryLine
-			scene.player.throwStatsDisplayDelegate = self
-			gameScene = view.scene
+			
+			gameScene = view.scene as? GameScene
+			
+			ballButtonDelegate = gameScene.player
+			trajectoryButtonDelegate = gameScene.trajectoryLine
+			gameScene.player.throwStatsDisplayDelegate = self
 			
 			view.showsFPS = true
 			view.showsNodeCount = true
@@ -57,32 +57,32 @@ class GameViewController: UIViewController, ThrowStatsDisplay {
 	
 	func throwStatsCreate() {
 		if statsShown {
-		angleLabel.isHidden = false
-		angleLabel.text = ""
-		forceLabel.isHidden = false
-		forceLabel.text = ""
+			angleLabel.isHidden = false
+			angleLabel.text = ""
+			forceLabel.isHidden = false
+			forceLabel.text = ""
 		}
 	}
 	
 	func throwStatsUpdate(angle: CGFloat, force: CGFloat, position: CGPoint) {
 		if statsShown {
-		//if the labels are outside of the view make them be below the finger not above
-		let convertedPosition = gameView.convert(position, from: gameScene)
-		angleLabel.center = CGPoint(x: convertedPosition.x, y: convertedPosition.y - 70)
-		forceLabel.center = CGPoint(x: convertedPosition.x, y: convertedPosition.y - 90)
-		let numberFormatter = NumberFormatter()
-		numberFormatter.numberStyle = .decimal
-		numberFormatter.maximumFractionDigits = 2
-		let newAngle = angle >= 0 ? angle : 360 + angle
-		angleLabel.text = "\(numberFormatter.string(from: newAngle as NSNumber)!)°"
-		forceLabel.text = "\(numberFormatter.string(from: force as NSNumber)!) Ns"
-	}
+			//if the labels are outside of the view make them be below the finger not above
+			let convertedPosition = gameView.convert(position, from: gameScene)
+			angleLabel.center = CGPoint(x: convertedPosition.x, y: convertedPosition.y - 70)
+			forceLabel.center = CGPoint(x: convertedPosition.x, y: convertedPosition.y - 90)
+			let numberFormatter = NumberFormatter()
+			numberFormatter.numberStyle = .decimal
+			numberFormatter.maximumFractionDigits = 2
+			let newAngle = angle >= 0 ? angle : 360 + angle
+			angleLabel.text = "\(numberFormatter.string(from: newAngle as NSNumber)!)°"
+			forceLabel.text = "\(numberFormatter.string(from: force as NSNumber)!) Ns"
+		}
 	}
 	
 	func throwStatsRemove() {
 		if statsShown {
-		angleLabel.isHidden = true
-		forceLabel.isHidden = true
+			angleLabel.isHidden = true
+			forceLabel.isHidden = true
 		}
 	}
 	
@@ -107,4 +107,5 @@ class GameViewController: UIViewController, ThrowStatsDisplay {
 		return true
 	}
 }
+
 

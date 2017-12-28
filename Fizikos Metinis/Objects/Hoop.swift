@@ -10,9 +10,9 @@ import Foundation
 import SpriteKit
 
 class Basketball: SKNode {
-	weak var gameScene: SKScene!
+	weak var gameScene: GameScene!
 	
-	init(in gameScene: SKScene) {
+	init(in gameScene: GameScene) {
 		self.gameScene = gameScene
 		super.init()
 		
@@ -30,13 +30,13 @@ class Basketball: SKNode {
 		
 		let pole = SKSpriteNode()
 		pole.size = CGSize(width: 15, height: 400)
-		pole.color = UIColor.clear
+		pole.color = UIColor.black
 		
 		pole.position = CGPoint(x: position.x - 6, y: position.y + (pole.size.height / 2))
 		leftHoopEdge.position = CGPoint(x: position.x + 2, y: position.y + (pole.size.height / 4.25 * 3))
 		rightHoopEdge.position = CGPoint(x: position.x + 80, y: position.y + (pole.size.height / 4.25 * 3))
 		
-		//pole.physicsBody = SKPhysicsBody(rectangleOf: pole.size)
+		pole.physicsBody = SKPhysicsBody(rectangleOf: pole.size)
 		leftHoopEdge.physicsBody = SKPhysicsBody(rectangleOf: leftHoopEdge.size)
 		rightHoopEdge.physicsBody = SKPhysicsBody(rectangleOf: rightHoopEdge.size)
 		
