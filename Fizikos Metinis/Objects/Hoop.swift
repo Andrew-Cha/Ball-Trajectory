@@ -16,35 +16,27 @@ class Basketball: SKNode {
 		self.gameScene = gameScene
 		super.init()
 		
-		setupHoop(at: CGPoint(x: -300, y: 0))
+		setupHoop(at: CGPoint(x: -300, y: 150))
 	}
 	
 	func setupHoop(at position: CGPoint) {
 		let leftHoopEdge = SKSpriteNode()
 		leftHoopEdge.size = CGSize(width: 10, height: 10)
-		leftHoopEdge.color = UIColor.black
+		leftHoopEdge.color = UIColor.orange
 		
 		let rightHoopEdge = SKSpriteNode()
 		rightHoopEdge.size = CGSize(width: 10, height: 10)
-		rightHoopEdge.color = UIColor.black
+		rightHoopEdge.color = UIColor.orange
+	
+		leftHoopEdge.position = CGPoint(x: position.x, y: position.y)
+		rightHoopEdge.position = CGPoint(x: position.x + 80, y: position.y)
 		
-		let pole = SKSpriteNode()
-		pole.size = CGSize(width: 15, height: 400)
-		pole.color = UIColor.black
-		
-		pole.position = CGPoint(x: position.x - 6, y: position.y + (pole.size.height / 2))
-		leftHoopEdge.position = CGPoint(x: position.x + 2, y: position.y + (pole.size.height / 4.25 * 3))
-		rightHoopEdge.position = CGPoint(x: position.x + 80, y: position.y + (pole.size.height / 4.25 * 3))
-		
-		pole.physicsBody = SKPhysicsBody(rectangleOf: pole.size)
 		leftHoopEdge.physicsBody = SKPhysicsBody(rectangleOf: leftHoopEdge.size)
 		rightHoopEdge.physicsBody = SKPhysicsBody(rectangleOf: rightHoopEdge.size)
-		
-		pole.physicsBody?.isDynamic = false
+
 		leftHoopEdge.physicsBody?.isDynamic = false
 		rightHoopEdge.physicsBody?.isDynamic = false
 		
-		gameScene.addChild(pole)
 		gameScene.addChild(leftHoopEdge)
 		gameScene.addChild(rightHoopEdge)
 	}

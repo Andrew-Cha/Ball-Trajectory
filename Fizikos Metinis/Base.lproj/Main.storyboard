@@ -28,7 +28,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ZbE-Eg-q7c" kind="show" id="o7N-rK-o8R"/>
+                                    <segue destination="ZbE-Eg-q7c" kind="show" id="Fan-GF-MOI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dr7-p0-abe">
@@ -38,7 +38,8 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BV1-FR-VrT" kind="show" id="gDI-DA-IHg"/>
+                                    <action selector="gameStart:" destination="gUY-oo-4jS" eventType="touchUpInside" id="9Tr-u0-rmf"/>
+                                    <segue destination="ZbE-Eg-q7c" kind="show" id="AvJ-V5-rpU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -47,97 +48,14 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWK-Ot-Qb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="gUY-oo-4jS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-528.48575712143929" y="132"/>
         </scene>
         <!--Game View Controller-->
-        <scene sceneID="tXr-a1-R10">
-            <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Fizikos_Metinis" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6j-vd-JHS">
-                                <rect key="frame" x="549" y="20" width="98" height="30"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <state key="normal" title="Reset Position">
-                                    <color key="titleColor" red="0.36470589040000001" green="0.066666670139999995" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="ballButtonPressed" destination="BV1-FR-VrT" eventType="touchDown" id="pnd-pW-ZHH"/>
-                                </connections>
-                            </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YOU SHOULDNT SEE THIS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFl-3g-lbG">
-                                <rect key="frame" x="312" y="177" width="120" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SHAN'T SEE THIS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Sp-48-zly">
-                                <rect key="frame" x="312" y="177" width="120" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAa-VR-s0S">
-                                <rect key="frame" x="549" y="58" width="98" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Trajectory">
-                                    <color key="titleColor" red="0.36470589040000001" green="0.066666670139999995" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="trajectoryButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="nbS-VA-0gW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6BA-gE-Z6A">
-                                <rect key="frame" x="549" y="96" width="98" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Stats">
-                                    <color key="titleColor" red="0.36470589040000001" green="0.066666670139999995" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="statsButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="31H-jW-C5f"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVl-1A-ei4">
-                                <rect key="frame" x="20" y="20" width="30" height="30"/>
-                                <state key="normal" image="backArrow"/>
-                                <connections>
-                                    <segue destination="amy-NQ-8FM" kind="show" id="TyF-hZ-c4j"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="y6j-vd-JHS" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="20" id="1kF-IQ-8iR"/>
-                            <constraint firstItem="yVl-1A-ei4" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="20" id="2QG-bW-4vr"/>
-                            <constraint firstItem="yVl-1A-ei4" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="20" id="3PQ-6d-LmA"/>
-                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="y6j-vd-JHS" secondAttribute="trailing" constant="20" id="8dw-My-4eD"/>
-                            <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="yVl-1A-ei4" secondAttribute="bottom" constant="325" id="8mN-ky-TjG"/>
-                            <constraint firstItem="y6j-vd-JHS" firstAttribute="leading" secondItem="yVl-1A-ei4" secondAttribute="trailing" constant="499" id="Lu2-S5-XZI"/>
-                            <constraint firstItem="y6j-vd-JHS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4qk-I5-YsI" secondAttribute="leading" id="vca-1q-4up"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
-                    </view>
-                    <connections>
-                        <outlet property="angleLabel" destination="iFl-3g-lbG" id="LwU-1z-DZd"/>
-                        <outlet property="forceLabel" destination="1Sp-48-zly" id="vTA-80-rPq"/>
-                        <outlet property="gameView" destination="3se-qz-xqx" id="Rwx-cI-BZ4"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="83" y="1010"/>
-        </scene>
-        <!--Simulation View Controller-->
         <scene sceneID="kce-WD-A3L">
             <objects>
-                <viewController id="ZbE-Eg-q7c" customClass="SimulationViewController" customModule="Fizikos_Metinis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ZbE-Eg-q7c" customClass="GameViewController" customModule="Fizikos_Metinis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ePm-qc-2kh" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,7 +69,6 @@
                                 </state>
                                 <connections>
                                     <action selector="ballButtonPressed" destination="ZbE-Eg-q7c" eventType="touchUpInside" id="Uym-Uu-3so"/>
-                                    <action selector="ballButtonPressed" destination="BV1-FR-VrT" eventType="touchDown" id="zqD-LF-Cke"/>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SHAN'T SEE THIS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dep-iw-QZH">
@@ -168,11 +85,31 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUw-HO-Ik5">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUw-HO-Ik5" userLabel="Back Button">
                                 <rect key="frame" x="20" y="20" width="30" height="30"/>
                                 <state key="normal" image="backArrow"/>
                                 <connections>
                                     <segue destination="amy-NQ-8FM" kind="show" id="aO6-YZ-edF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4i-EO-gI0" userLabel="Trajectory Button">
+                                <rect key="frame" x="549" y="58" width="98" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Trajectory">
+                                    <color key="titleColor" red="0.36470589040000001" green="0.066666670139999995" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="trajectoryButtonPress:" destination="ZbE-Eg-q7c" eventType="touchUpInside" id="KvQ-bU-dCp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Neh-EK-xct" userLabel="Stats Button">
+                                <rect key="frame" x="549" y="96" width="98" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Stats">
+                                    <color key="titleColor" red="0.36470589040000001" green="0.066666670139999995" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="statsButtonPress:" destination="ZbE-Eg-q7c" eventType="touchUpInside" id="dl9-it-xJd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -192,11 +129,13 @@
                         <outlet property="angleLabel" destination="dep-iw-QZH" id="VN7-0k-T4j"/>
                         <outlet property="forceLabel" destination="ks0-gb-wYy" id="hxB-CM-Lh9"/>
                         <outlet property="gameView" destination="ePm-qc-2kh" id="WHq-Tt-JQN"/>
+                        <outlet property="statsButton" destination="Neh-EK-xct" id="k8W-zy-D5R"/>
+                        <outlet property="trajectoryButton" destination="g4i-EO-gI0" id="cJB-E4-Q1k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OCH-m8-jCn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="82" y="-612"/>
+            <point key="canvasLocation" x="264" y="132"/>
         </scene>
     </scenes>
     <resources>
@@ -204,6 +143,6 @@
         <image name="backgroundImage" width="470" height="338"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aO6-YZ-edF"/>
+        <segue reference="Fan-GF-MOI"/>
     </inferredMetricsTieBreakers>
 </document>

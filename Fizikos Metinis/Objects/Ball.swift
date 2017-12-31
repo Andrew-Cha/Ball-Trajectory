@@ -14,10 +14,12 @@ class Ball: SKSpriteNode, BallPosResetButton {
 	let bodyRadius: CGFloat
 	weak var gameScene: GameScene!
 	var throwStatsDisplayDelegate: ThrowStatsDisplay?
+	var resetPoint: CGPoint!
 	
-	init(in gameScene: GameScene) {
+	init(in gameScene: GameScene, resetPoint: CGPoint) {
 		self.gameScene = gameScene
 		self.bodyRadius = Ball.texture.size().width / 2
+		self.resetPoint = resetPoint
 		
 		super.init(texture: Ball.texture, color: .clear, size: Ball.texture.size())
 		position = CGPoint(x: 0, y: size.height / 2)
@@ -38,7 +40,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 	
 	func resetPosition() {
 		physicsBody?.isDynamic = false
-		position = CGPoint(x: 0, y: size.height / 2)
+		position = resetPoint
 		isUserInteractionEnabled = true
 		gameScene.trajectoryLine.remove()
 	}

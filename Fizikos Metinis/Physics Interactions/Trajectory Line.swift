@@ -18,7 +18,7 @@ class TrajectoryLine: SKShapeNode, TrajectoryButton {
 	var storedDots: [SKSpriteNode] = []
 	let dotCount = 200
 	var shown = true
-
+	
 	init(in gameScene: GameScene) {
 		super.init()
 		self.gameScene = gameScene

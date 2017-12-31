@@ -20,21 +20,23 @@ class GameViewController: UIViewController, ThrowStatsDisplay {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		if let view = self.view as? SKView {
-			guard var scene = SKScene(fileNamed: "GameScene") as? GameScene else {
+			guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
 				fatalError("Could not load scene!")
 			}
-			scene = GameScene(isGame: false)
 			view.presentScene(scene)
 			
 			gameScene = view.scene as? GameScene
-			
-			ballButtonDelegate = gameScene.player
-			trajectoryButtonDelegate = gameScene.trajectoryLine
-			gameScene.player.throwStatsDisplayDelegate = self
+			gameScene.isGame = true
 			
 			view.showsFPS = true
 			view.showsNodeCount = true
 		}
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		ballButtonDelegate = gameScene.player
+		trajectoryButtonDelegate = gameScene.trajectoryLine
+		gameScene.player.throwStatsDisplayDelegate = self
 	}
 	
 	@IBAction func statsButtonPressed(_ sender: Any) {

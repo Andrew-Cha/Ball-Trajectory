@@ -15,51 +15,58 @@ class GameScene: SKScene {
 	var draggingLine: DragLine!
 	var trajectoryLine: TrajectoryLine!
 	var hoop: SKNode?
-	
-	init(isGame: Bool) {
-		super.init()
-		
-		if isGame {
-			loadGame()
-		} else {
-			loadSimulation()
-		}
-	}
-	
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
+	var isGame = false
+	var loaded = false
+	var throwStatsDelegate: ThrowStatsDisplay!
+	var viewController: GameViewController!
 	
 	override func didMove(to view: SKView) {
-		
+		//instantly called after loading 
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
-		if player.position.y >= -750 {
+		if !loaded {
+			if isGame {
+				loadGame()
+			} else {
+				loadSimulation()
+			}
+			loaded = true
+		}
+		
+		if !isGame {
 			cam.position = player.position
-		} else {
-			cam.position.x = player.position.x
 		}
 	}
 	
 	func loadGame() {
-		player = Ball(in: self)
+		player = Ball(in: self, resetPoint: CGPoint(x: 200, y: 24))
 		bottomBorder = BottomBorder(in: self)
 		draggingLine = DragLine(in: self)
 		trajectoryLine = TrajectoryLine(in: self)
 		hoop = Basketball(in: self)
 		cam = SKCameraNode()
 		scene?.camera = cam
+		cam.setScale(2)
+		cam.position = CGPoint(x: 0, y: 200)
 		trajectoryLine.createDotsToStore()
+		player.throwStatsDisplayDelegate = throwStatsDelegate
+		viewController.ballButtonDelegate = player
+		viewController.trajectoryButtonDelegate = trajectoryLine
+		
 	}
 	
 	func loadSimulation() {
-		player = Ball(in: self)
+		player = Ball(in: self, resetPoint: CGPoint(x: 0, y: 24))
 		bottomBorder = BottomBorder(in: self)
 		draggingLine = DragLine(in: self)
 		trajectoryLine = TrajectoryLine(in: self)
 		cam = SKCameraNode()
 		scene?.camera = cam
+		cam.setScale(2)
 		trajectoryLine.createDotsToStore()
+		player.throwStatsDisplayDelegate = throwStatsDelegate
+		viewController.ballButtonDelegate = player
+		viewController.trajectoryButtonDelegate = trajectoryLine
 	}
 }
