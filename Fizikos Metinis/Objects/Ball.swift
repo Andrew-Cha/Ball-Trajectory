@@ -22,7 +22,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		self.resetPoint = resetPoint
 		
 		super.init(texture: Ball.texture, color: .clear, size: Ball.texture.size())
-		position = CGPoint(x: 0, y: size.height / 2)
+		position = resetPoint
 		isUserInteractionEnabled = true
 		name = "player"
 		zPosition = 1
@@ -34,6 +34,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		physicsBody?.friction = 1
 		//physicsBody?.restitution = 0.8
 		physicsBody?.isDynamic = false
+		physicsBody?.contactTestBitMask = 0b1
 		
 		gameScene.addChild(self)
 	}
@@ -66,7 +67,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		}
 	}
 	
-	let impulseScale: CGFloat = 4.0
+	let impulseScale: CGFloat = 2.5
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
 			let currentLocation = touch.location(in: gameScene)
@@ -87,11 +88,11 @@ class Ball: SKSpriteNode, BallPosResetButton {
 	}
 }
 
-protocol BallPosResetButton {
+protocol BallPosResetButton: class {
 	func resetPosition()
 }
 
-protocol ThrowStatsDisplay {
+protocol ThrowStatsDisplay: class {
 	func throwStatsCreate()
 	func throwStatsUpdate(angle: CGFloat, force: CGFloat, position: CGPoint)
 	func throwStatsRemove()

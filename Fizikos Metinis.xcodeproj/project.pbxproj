@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF5123501FFA82AD00096890 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF51234F1FFA82AD00096890 /* MainMenuViewController.swift */; };
 		DF571D951FC0DF5A00DECC72 /* Hoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF571D941FC0DF5A00DECC72 /* Hoop.swift */; };
 		DF6E089B1FA9307E00D93A87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E089A1FA9307E00D93A87 /* AppDelegate.swift */; };
 		DF6E089D1FA9307E00D93A87 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = DF6E089C1FA9307E00D93A87 /* GameScene.sks */; };
 		DF6E089F1FA9307E00D93A87 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = DF6E089E1FA9307E00D93A87 /* Actions.sks */; };
-		DF6E08A31FA9307E00D93A87 /* SimulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E08A21FA9307E00D93A87 /* SimulationViewController.swift */; };
+		DF6E08A31FA9307E00D93A87 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E08A21FA9307E00D93A87 /* GameViewController.swift */; };
 		DF6E08A61FA9307E00D93A87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF6E08A41FA9307E00D93A87 /* Main.storyboard */; };
 		DF6E08A81FA9307E00D93A87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF6E08A71FA9307E00D93A87 /* Assets.xcassets */; };
 		DF6E08AB1FA9307E00D93A87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF6E08A91FA9307E00D93A87 /* LaunchScreen.storyboard */; };
@@ -44,12 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF51234F1FFA82AD00096890 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		DF571D941FC0DF5A00DECC72 /* Hoop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hoop.swift; sourceTree = "<group>"; usesTabs = 1; };
 		DF6E08971FA9307E00D93A87 /* Fizikos Metinis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fizikos Metinis.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF6E089A1FA9307E00D93A87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF6E089C1FA9307E00D93A87 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		DF6E089E1FA9307E00D93A87 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		DF6E08A21FA9307E00D93A87 /* SimulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationViewController.swift; sourceTree = "<group>"; };
+		DF6E08A21FA9307E00D93A87 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = ../GameViewController.swift; sourceTree = "<group>"; };
 		DF6E08A51FA9307E00D93A87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF6E08A71FA9307E00D93A87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF6E08AA1FA9307E00D93A87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -174,7 +176,8 @@
 		DF7C1E051FF2589D00612FBC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				DF6E08A21FA9307E00D93A87 /* SimulationViewController.swift */,
+				DF51234F1FFA82AD00096890 /* MainMenuViewController.swift */,
+				DF6E08A21FA9307E00D93A87 /* GameViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -321,7 +324,8 @@
 				DF71303F1FABEF3F00ECDB0D /* DragLine.swift in Sources */,
 				DF7C1E091FF258C200612FBC /* GameScene.swift in Sources */,
 				DF571D951FC0DF5A00DECC72 /* Hoop.swift in Sources */,
-				DF6E08A31FA9307E00D93A87 /* SimulationViewController.swift in Sources */,
+				DF6E08A31FA9307E00D93A87 /* GameViewController.swift in Sources */,
+				DF5123501FFA82AD00096890 /* MainMenuViewController.swift in Sources */,
 				DF6E089B1FA9307E00D93A87 /* AppDelegate.swift in Sources */,
 				DF6E08D11FA9353500D93A87 /* BorderRectangle.swift in Sources */,
 				DFCBED831FB0FA7E00D4E8FB /* Trajectory Line.swift in Sources */,

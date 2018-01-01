@@ -12,9 +12,10 @@ import SpriteKit
 class DragLine: SKShapeNode {
 	var dashedLine = SKShapeNode()
 	weak var gameScene: GameScene!
-	var initialPosition = CGPoint(x: 0, y: 24)
+	var initialPosition: CGPoint
 	
-	init(in gameScene: GameScene) {
+	init(in gameScene: GameScene, initialPosition: CGPoint) {
+		self.initialPosition = initialPosition
 		super.init()
 		self.gameScene = gameScene
 	}

@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main Menu View Controller-->
         <scene sceneID="Bgb-eL-6Gs">
             <objects>
-                <viewController id="amy-NQ-8FM" sceneMemberID="viewController">
+                <viewController id="amy-NQ-8FM" customClass="MainMenuViewController" customModule="Fizikos_Metinis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FuF-zz-uVa">
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,7 +39,7 @@
                                 </state>
                                 <connections>
                                     <action selector="gameStart:" destination="gUY-oo-4jS" eventType="touchUpInside" id="9Tr-u0-rmf"/>
-                                    <segue destination="ZbE-Eg-q7c" kind="show" id="AvJ-V5-rpU"/>
+                                    <segue destination="ZbE-Eg-q7c" kind="show" identifier="gameStarted" id="AvJ-V5-rpU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -112,6 +112,13 @@
                                     <action selector="statsButtonPress:" destination="ZbE-Eg-q7c" eventType="touchUpInside" id="dl9-it-xJd"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nA-0e-btD">
+                                <rect key="frame" x="116" y="0.0" width="94" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" red="0.36470589040000001" green="0.066666670139999995" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -129,13 +136,14 @@
                         <outlet property="angleLabel" destination="dep-iw-QZH" id="VN7-0k-T4j"/>
                         <outlet property="forceLabel" destination="ks0-gb-wYy" id="hxB-CM-Lh9"/>
                         <outlet property="gameView" destination="ePm-qc-2kh" id="WHq-Tt-JQN"/>
+                        <outlet property="scoreLabel" destination="4nA-0e-btD" id="kcM-6M-UYj"/>
                         <outlet property="statsButton" destination="Neh-EK-xct" id="k8W-zy-D5R"/>
                         <outlet property="trajectoryButton" destination="g4i-EO-gI0" id="cJB-E4-Q1k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OCH-m8-jCn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="264" y="132"/>
+            <point key="canvasLocation" x="263.11844077961024" y="132"/>
         </scene>
     </scenes>
     <resources>
@@ -143,6 +151,6 @@
         <image name="backgroundImage" width="470" height="338"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Fan-GF-MOI"/>
+        <segue reference="AvJ-V5-rpU"/>
     </inferredMetricsTieBreakers>
 </document>

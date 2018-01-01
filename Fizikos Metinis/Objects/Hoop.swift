@@ -16,7 +16,7 @@ class Basketball: SKNode {
 		self.gameScene = gameScene
 		super.init()
 		
-		setupHoop(at: CGPoint(x: -300, y: 150))
+		setupHoop(at: CGPoint(x: -300, y: 224))
 	}
 	
 	func setupHoop(at position: CGPoint) {
@@ -39,6 +39,14 @@ class Basketball: SKNode {
 		
 		gameScene.addChild(leftHoopEdge)
 		gameScene.addChild(rightHoopEdge)
+		
+		let contactMask = SKSpriteNode()
+		contactMask.size = CGSize(width: 80, height: 10)
+		contactMask.position = CGPoint(x: position.x + 40, y: position.y)
+		contactMask.physicsBody?.contactTestBitMask = 0b1
+		contactMask.name = "player"
+		
+		gameScene.addChild(contactMask)
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
