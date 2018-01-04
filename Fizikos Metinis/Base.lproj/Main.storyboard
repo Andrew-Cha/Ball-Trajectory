@@ -21,25 +21,27 @@
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0W-ZJ-HNN">
-                                <rect key="frame" x="269" y="115" width="129" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Show Simulation">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="ZbE-Eg-q7c" kind="show" id="Fan-GF-MOI"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dr7-p0-abe">
-                                <rect key="frame" x="269" y="163" width="129" height="30"/>
+                                <rect key="frame" x="269" y="202" width="129" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Start Game">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="gameStart:" destination="gUY-oo-4jS" eventType="touchUpInside" id="9Tr-u0-rmf"/>
                                     <segue destination="ZbE-Eg-q7c" kind="show" identifier="gameStarted" id="AvJ-V5-rpU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0W-ZJ-HNN">
+                                <rect key="frame" x="269" y="145" width="129" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Show Simulation">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ZbE-Eg-q7c" kind="show" id="Fan-GF-MOI"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -64,8 +66,7 @@
                                 <rect key="frame" x="549" y="20" width="98" height="30"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <state key="normal" title="Reset Position">
-                                    <color key="titleColor" red="0.36470589040000001" green="0.066666670139999995" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="ballButtonPressed" destination="ZbE-Eg-q7c" eventType="touchUpInside" id="Uym-Uu-3so"/>
@@ -75,14 +76,14 @@
                                 <rect key="frame" x="273" y="178" width="120" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YOU SHOULDNT SEE THIS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ks0-gb-wYy">
                                 <rect key="frame" x="273" y="178" width="120" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUw-HO-Ik5" userLabel="Back Button">
@@ -96,7 +97,7 @@
                                 <rect key="frame" x="549" y="58" width="98" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Trajectory">
-                                    <color key="titleColor" red="0.36470589040000001" green="0.066666670139999995" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="trajectoryButtonPress:" destination="ZbE-Eg-q7c" eventType="touchUpInside" id="KvQ-bU-dCp"/>
@@ -106,21 +107,14 @@
                                 <rect key="frame" x="549" y="96" width="98" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Stats">
-                                    <color key="titleColor" red="0.36470589040000001" green="0.066666670139999995" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="statsButtonPress:" destination="ZbE-Eg-q7c" eventType="touchUpInside" id="dl9-it-xJd"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nA-0e-btD">
-                                <rect key="frame" x="116" y="0.0" width="94" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <color key="textColor" red="0.36470589040000001" green="0.066666670139999995" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="CW1-xB-bXp" firstAttribute="top" secondItem="ePm-qc-2kh" secondAttribute="top" constant="20" symbolic="YES" id="ER5-yf-oHv"/>
                             <constraint firstItem="PUw-HO-Ik5" firstAttribute="leading" secondItem="kKl-Mj-MEr" secondAttribute="leading" constant="20" id="Xqp-oJ-Ehr"/>
@@ -136,7 +130,6 @@
                         <outlet property="angleLabel" destination="dep-iw-QZH" id="VN7-0k-T4j"/>
                         <outlet property="forceLabel" destination="ks0-gb-wYy" id="hxB-CM-Lh9"/>
                         <outlet property="gameView" destination="ePm-qc-2kh" id="WHq-Tt-JQN"/>
-                        <outlet property="scoreLabel" destination="4nA-0e-btD" id="kcM-6M-UYj"/>
                         <outlet property="statsButton" destination="Neh-EK-xct" id="k8W-zy-D5R"/>
                         <outlet property="trajectoryButton" destination="g4i-EO-gI0" id="cJB-E4-Q1k"/>
                     </connections>

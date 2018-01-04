@@ -9,12 +9,11 @@
 import Foundation
 import SpriteKit
 
-class Ball: SKSpriteNode, BallPosResetButton {
+class Ball: SKSpriteNode {
 	static let texture = SKTexture(imageNamed: "ball.png")
-	let bodyRadius: CGFloat
 	weak var gameScene: GameScene!
-	var throwStatsDisplayDelegate: ThrowStatsDisplay?
 	var resetPoint: CGPoint!
+	let bodyRadius: CGFloat
 	
 	init(in gameScene: GameScene, resetPoint: CGPoint) {
 		self.gameScene = gameScene
@@ -32,18 +31,23 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		physicsBody?.linearDamping = 0
 		physicsBody?.angularDamping = 1
 		physicsBody?.friction = 1
-		//physicsBody?.restitution = 0.8
+		physicsBody?.restitution = 0.75
 		physicsBody?.isDynamic = false
-		physicsBody?.contactTestBitMask = 0b1
+		physicsBody?.contactTestBitMask = 1
 		
 		gameScene.addChild(self)
 	}
 	
 	func resetPosition() {
 		physicsBody?.isDynamic = false
-		position = resetPoint
 		isUserInteractionEnabled = true
+		
+		position = resetPoint
 		gameScene.trajectoryLine.remove()
+		
+		if let hoop = gameScene.hoop {
+			hoop.enabled = true
+		}
 	}
 	
 	var initialLocation: CGPoint?
@@ -51,7 +55,7 @@ class Ball: SKSpriteNode, BallPosResetButton {
 		for _ in touches {
 			isUserInteractionEnabled = false
 			initialLocation = position
-			throwStatsDisplayDelegate?.throwStatsCreate()
+			gameScene.viewController.throwStatsCreate()
 			gameScene.trajectoryLine.displayDots()
 		}
 	}
@@ -59,11 +63,12 @@ class Ball: SKSpriteNode, BallPosResetButton {
 	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
 			let currentLocation = touch.location(in: gameScene)
-				gameScene.draggingLine.positionChanged(to: currentLocation)
-				let offset = (position - currentLocation) * impulseScale
-				let angle = offset.angle * 180 / .pi
-				gameScene.trajectoryLine.update(forOffset: offset.asVector)
-				throwStatsDisplayDelegate?.throwStatsUpdate(angle: angle, force: offset.length, position: currentLocation)
+			let offset = (position - currentLocation) * impulseScale
+			let angle = offset.angle * 180 / .pi
+			
+			gameScene.draggingLine.positionChanged(to: currentLocation)
+			gameScene.trajectoryLine.update(forOffset: offset.asVector)
+			gameScene.viewController.throwStatsUpdate(angle: angle, force: offset.length, position: currentLocation)
 		}
 	}
 	
@@ -74,10 +79,11 @@ class Ball: SKSpriteNode, BallPosResetButton {
 			physicsBody?.isDynamic = true
 			if let initialLocation = initialLocation {
 				let offset = (initialLocation - currentLocation) * impulseScale
+				
 				physicsBody?.applyImpulse(offset.asVector * physicsBody!.mass)
 				gameScene.trajectoryLine.update(forOffset: offset.asVector)
 				gameScene.draggingLine.stopped()
-				throwStatsDisplayDelegate?.throwStatsRemove()
+				gameScene.viewController.throwStatsRemove()
 				self.initialLocation = nil
 			}
 		}
@@ -88,11 +94,11 @@ class Ball: SKSpriteNode, BallPosResetButton {
 	}
 }
 
-protocol BallPosResetButton: class {
+protocol BallPosResetButtonDelegate: class {
 	func resetPosition()
 }
 
-protocol ThrowStatsDisplay: class {
+protocol ThrowStatsDisplayDelegate: class {
 	func throwStatsCreate()
 	func throwStatsUpdate(angle: CGFloat, force: CGFloat, position: CGPoint)
 	func throwStatsRemove()

@@ -9,19 +9,15 @@
 import UIKit
 import SpriteKit
 
-class GameViewController: UIViewController, ThrowStatsDisplay {
-	weak var ballButtonDelegate: BallPosResetButton?
-	weak var trajectoryButtonDelegate: TrajectoryButton?
+class GameViewController: UIViewController {
 	@IBOutlet weak var forceLabel: UILabel!
 	@IBOutlet weak var trajectoryButton: UIButton!
 	@IBOutlet weak var angleLabel: UILabel!
 	@IBOutlet weak var statsButton: UIButton!
 	@IBOutlet var gameView: SKView!
-	@IBOutlet weak var scoreLabel: UILabel!
 	weak var gameScene: GameScene!
 	var statsShown = true
 	var isGame = false
-	var currentScore = 0
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -37,7 +33,6 @@ class GameViewController: UIViewController, ThrowStatsDisplay {
 			if !isGame {
 				trajectoryButton.isHidden = true
 				statsButton.isHidden = true
-				scoreLabel.isHidden = true
 			}
 			
 			view.showsFPS = true
@@ -47,7 +42,7 @@ class GameViewController: UIViewController, ThrowStatsDisplay {
 	}
 	
 	@IBAction func ballButtonPressed() {
-		ballButtonDelegate?.resetPosition()
+		gameScene.player.resetPosition()
 	}
 	
 	@IBAction func statsButtonPress(_ sender: Any) {
@@ -61,12 +56,7 @@ class GameViewController: UIViewController, ThrowStatsDisplay {
 	}
 	
 	@IBAction func trajectoryButtonPress(_ sender: Any) {
-		trajectoryButtonDelegate?.show()
-	}
-	
-	func addScore() {
-		currentScore += 1
-		scoreLabel.text = "Score: \(currentScore)"
+		gameScene.trajectoryLine.show()
 	}
 	
 	func throwStatsCreate() {
