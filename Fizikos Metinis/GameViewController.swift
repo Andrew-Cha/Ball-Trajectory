@@ -22,7 +22,7 @@ class GameViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		if let view = self.view as? SKView {
-			guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else { //instantly initializes the GameScene
+			guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
 				fatalError("Could not load scene!")
 			}
 			

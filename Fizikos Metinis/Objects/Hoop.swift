@@ -57,15 +57,11 @@ class Basketball: SKNode {
 		
 		net.size = CGSize(width: 70, height: 10)
 		net.position = CGPoint(x: position.x + 40, y: position.y)
-		net.physicsBody = SKPhysicsBody(rectangleOf: net.size)
-		net.physicsBody?.isDynamic = false
-		net.physicsBody?.categoryBitMask = 0
-		net.physicsBody?.collisionBitMask = 0
 		net.color = UIColor.white
 		net.zPosition = 1
 		
-		sensor.size = CGSize(width: 10, height: 1)
-		sensor.position = CGPoint(x: position.x + 30, y: position.y - 20)
+		sensor.size = CGSize(width: 1, height: 1)
+		sensor.position = CGPoint(x: position.x + 20, y: position.y - 15)
 		sensor.physicsBody = SKPhysicsBody(rectangleOf: sensor.size)
 		sensor.physicsBody?.isDynamic = false
 		sensor.physicsBody?.categoryBitMask = 0

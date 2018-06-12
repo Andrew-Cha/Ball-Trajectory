@@ -100,9 +100,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 				
 			case 0...4 :
 				addScore(by: 1)
-				scoreLabel?.text = "You could be doing something more productive"
-				scoreLabel?.fontSize = 50
-				
+	
 			case 4...9 :
 				addScore(by: 1)
 				hoop.moveLeftRight(in: 1.5)
